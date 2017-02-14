@@ -127,11 +127,11 @@ public class BSTTests {
     public void testRemoveEasy() {
 	try {
 	    BST b = new BST();
-	    int size = b.size();
 	    String s;
 	    b.insert("Hello World!");
 	    b.insert("Yoshi's World");
 	    b.insert(s = "a Mario's World");
+	    int size = b.size();
 	    assertTrue("Removing node with no children failed", b.remove(s) && size - 1 == b.size());
 	} catch (Exception e) {
 	    fail("Exception thrown");
@@ -142,11 +142,11 @@ public class BSTTests {
     public void testRemoveMedium() {
 	try {
 	    BST b = new BST();
-	    int size = b.size();
 	    String s;
 	    b.insert("Hello World!");
 	    b.insert(s = "Yoshi's World");
 	    b.insert("Mario's World");
+	    int size = b.size();
 	    assertTrue("Removing node with one child failed", b.remove(s) && size - 1 == b.size());
 	} catch (Exception e) {
 	    fail("Exception thrown");
@@ -157,12 +157,12 @@ public class BSTTests {
     public void testRemoveHard() {
 	try {
 	    BST b = new BST();
-	    int size = b.size();
 	    String s;
 	    b.insert("Hello World!");
 	    b.insert(s = "Yoshi's World");
 	    b.insert("Mario's World");
 	    b.insert("Zuigi's World");
+	    int size = b.size();
 	    assertTrue("Removing node with two children failed", b.remove(s) && size - 1 == b.size());
 	} catch (Exception e) {
 	    fail("Exception thrown");
@@ -173,9 +173,9 @@ public class BSTTests {
     public void testRemoveChallenge() {
 	try {
 	    BST b = new BST();
-	    int size = b.size();
 	    String s;
 	    b.insert(s = "Hello World!");
+	    int size = b.size();
 	    assertTrue("Removing root with no children failed", b.remove(s) && size - 1 == b.size());
 	} catch (Exception e) {
 	    fail("Exception thrown");
@@ -186,11 +186,11 @@ public class BSTTests {
     public void testRemoveChallengePlus() {
 	try {
 	    BST b = new BST();
-	    int size = b.size();
 	    String s;
 	    b.insert(s = "Hello World!");
 	    b.insert("Yoshi's World");
 	    b.insert("a Mario's World");
+	    int size = b.size();
 	    assertTrue("Removing root with two children failed", b.remove(s) && size - 1 == b.size());
 	} catch (Exception e) {
 	    fail("Exception thrown");
@@ -212,10 +212,10 @@ public class BSTTests {
     public void testRemoveFalseMedium() {
 	try {
 	    BST b = new BST();
-	    int size = b.size();
 	    b.insert("Hello World!");
 	    b.insert("Yoshi's World");
 	    b.insert("a Mario's World");
+	    int size = b.size();
 	    assertFalse("Removing nonexistent node in tree succeeded", b.remove("any string") && size == b.size());
 	} catch (Exception e) {
 	    fail("Exception thrown");
@@ -226,7 +226,6 @@ public class BSTTests {
     public void testRemoveFalseHard() {
 	try {
 	    BST b = new BST();
-	    int size = b.size();
 	    String s = MyRandom.nextString();
 	    System.out.println(s);
 	    for (int i = 0; i < MAX; i++) {
@@ -235,6 +234,7 @@ public class BSTTests {
 		}
 		b.insert(next);
 	    }
+	    int size = b.size();
 	    assertFalse("Removing nonexistent node in tree succeeded", b.remove(s) && size == b.size());
 	} catch (Exception e) {
 	    fail("Exception thrown");
