@@ -16,7 +16,7 @@ public class BSTTests {
 	    assertTrue("Constructor did not establish required semantics",
 		    b.empty() && b.size() == 0 && b.getRoot() == null);
 	} catch (Exception e) {
-	    fail("Exception thrown");
+	    fail("Exception thrown" + e.getMessage() + e.getMessage());
 	}
     }
 
@@ -28,7 +28,7 @@ public class BSTTests {
 	    b.insert(s = "Hello World!");
 	    assertTrue("getRoot returned wrong value", s.equals(b.getRoot().getData()));
 	} catch (Exception e) {
-	    fail("Exception thrown");
+	    fail("Exception thrown" + e.getMessage());
 	}
     }
 
@@ -41,7 +41,7 @@ public class BSTTests {
 	    b.insert("Other world (after)...");
 	    assertTrue("getRoot returned wrong value", s.equals(b.getRoot().getData()));
 	} catch (Exception e) {
-	    fail("Exception thrown");
+	    fail("Exception thrown" + e.getMessage());
 	}
     }
 
@@ -54,7 +54,7 @@ public class BSTTests {
 	    b.insert("Before world...");
 	    assertTrue("getRoot returned wrong value", s.equals(b.getRoot().getData()));
 	} catch (Exception e) {
-	    fail("Exception thrown");
+	    fail("Exception thrown" + e.getMessage());
 	}
     }
 
@@ -68,7 +68,7 @@ public class BSTTests {
 	    b.insert("Before world...");
 	    assertTrue("getRoot returned wrong value", s.equals(b.getRoot().getData()));
 	} catch (Exception e) {
-	    fail("Exception thrown");
+	    fail("Exception thrown" + e.getMessage());
 	}
     }
 
@@ -79,7 +79,7 @@ public class BSTTests {
 	    int size = b.size();
 	    assertTrue("Legal first insert failed", b.insert("Hello World!") && size + 1 == b.size());
 	} catch (Exception e) {
-	    fail("Exception thrown");
+	    fail("Exception thrown" + e.getMessage());
 	}
     }
 
@@ -91,7 +91,7 @@ public class BSTTests {
 	    int size = b.size();
 	    assertTrue("Legal insert failed", b.insert("Hello World!") && size + 1 == b.size());
 	} catch (Exception e) {
-	    fail("Exception thrown");
+	    fail("Exception thrown" + e.getMessage());
 	}
     }
 
@@ -103,7 +103,7 @@ public class BSTTests {
 	    int size = b.size();
 	    assertFalse("Illegal insert returned true", b.insert("Super Mario World!") && size + 1 == b.size());
 	} catch (Exception e) {
-	    fail("Exception thrown");
+	    fail("Exception thrown" + e.getMessage());
 	}
     }
 
@@ -120,7 +120,7 @@ public class BSTTests {
 	    int size = b.size();
 	    assertTrue("Legal first insert failed", b.insert("Hello World!") && size + 1 == b.size());
 	} catch (Exception e) {
-	    fail("Exception thrown");
+	    fail("Exception thrown" + e.getMessage());
 	}
     }
 
@@ -135,7 +135,7 @@ public class BSTTests {
 	    int size = b.size();
 	    assertTrue("Removing node with no children failed", b.remove(s) && size - 1 == b.size());
 	} catch (Exception e) {
-	    fail("Exception thrown");
+	    fail("Exception thrown" + e.getMessage());
 	}
     }
 
@@ -150,7 +150,7 @@ public class BSTTests {
 	    int size = b.size();
 	    assertTrue("Removing node with one child failed", b.remove(s) && size - 1 == b.size());
 	} catch (Exception e) {
-	    fail("Exception thrown");
+	    fail("Exception thrown" + e.getMessage());
 	}
     }
 
@@ -166,7 +166,7 @@ public class BSTTests {
 	    int size = b.size();
 	    assertTrue("Removing node with two children failed", b.remove(s) && size - 1 == b.size());
 	} catch (Exception e) {
-	    fail("Exception thrown");
+	    fail("Exception thrown" + e.getMessage());
 	}
     }
 
@@ -179,7 +179,7 @@ public class BSTTests {
 	    int size = b.size();
 	    assertTrue("Removing root with no children failed", b.remove(s) && size - 1 == b.size());
 	} catch (Exception e) {
-	    fail("Exception thrown");
+	    fail("Exception thrown" + e.getMessage());
 	}
     }
 
@@ -194,7 +194,7 @@ public class BSTTests {
 	    int size = b.size();
 	    assertTrue("Removing root with two children failed", b.remove(s) && size - 1 == b.size());
 	} catch (Exception e) {
-	    fail("Exception thrown");
+	    fail("Exception thrown" + e.getMessage());
 	}
     }
 
@@ -205,7 +205,7 @@ public class BSTTests {
 	    int size = b.size();
 	    assertFalse("Removing node in empty tree succeeded", b.remove("any string") && size == b.size());
 	} catch (Exception e) {
-	    fail("Exception thrown");
+	    fail("Exception thrown" + e.getMessage());
 	}
     }
 
@@ -219,7 +219,7 @@ public class BSTTests {
 	    int size = b.size();
 	    assertFalse("Removing nonexistent node in tree succeeded", b.remove("any string") && size == b.size());
 	} catch (Exception e) {
-	    fail("Exception thrown");
+	    fail("Exception thrown" + e.getMessage());
 	}
     }
 
@@ -238,7 +238,7 @@ public class BSTTests {
 	    int size = b.size();
 	    assertFalse("Removing nonexistent node in tree succeeded", b.remove(s) && size == b.size());
 	} catch (Exception e) {
-	    fail("Exception thrown");
+	    fail("Exception thrown" + e.getMessage());
 	}
     }
 
@@ -248,7 +248,7 @@ public class BSTTests {
 	    BST b = new BST();
 	    assertTrue("Empty tree returned non-null min value", b.findMin() == null);
 	} catch (Exception e) {
-	    fail("Exception thrown");
+	    fail("Exception thrown" + e.getMessage());
 	}
     }
 
@@ -260,7 +260,7 @@ public class BSTTests {
 	    b.insert(s = "Hello World!");
 	    assertTrue("Min incorrect", s.equals(b.findMin()));
 	} catch (Exception e) {
-	    fail("Exception thrown");
+	    fail("Exception thrown" + e.getMessage());
 	}
     }
 
@@ -274,7 +274,7 @@ public class BSTTests {
 	    b.insert("Mario's World!");
 	    assertTrue("Min incorrect", s.equals(b.findMin()));
 	} catch (Exception e) {
-	    fail("Exception thrown");
+	    fail("Exception thrown" + e.getMessage());
 	}
     }
 
@@ -289,7 +289,7 @@ public class BSTTests {
 	    b.insert(s = "A Toad's World!");
 	    assertTrue("Min incorrect", s.equals(b.findMin()));
 	} catch (Exception e) {
-	    fail("Exception thrown");
+	    fail("Exception thrown" + e.getMessage());
 	}
     }
 
@@ -299,7 +299,7 @@ public class BSTTests {
 	    BST b = new BST();
 	    assertTrue("Empty tree returned non-null max value", b.findMax() == null);
 	} catch (Exception e) {
-	    fail("Exception thrown");
+	    fail("Exception thrown" + e.getMessage());
 	}
     }
 
@@ -311,7 +311,7 @@ public class BSTTests {
 	    b.insert(s = "Hello World!");
 	    assertTrue("Max incorrect", s.equals(b.findMax()));
 	} catch (Exception e) {
-	    fail("Exception thrown");
+	    fail("Exception thrown" + e.getMessage());
 	}
     }
 
@@ -325,7 +325,7 @@ public class BSTTests {
 	    b.insert("Mario's World!");
 	    assertTrue("Max incorrect", s.equals(b.findMax()));
 	} catch (Exception e) {
-	    fail("Exception thrown");
+	    fail("Exception thrown" + e.getMessage());
 	}
     }
 
@@ -341,7 +341,7 @@ public class BSTTests {
 	    b.insert(s = "Zuigi's World!");
 	    assertTrue("Max incorrect", s.equals(b.findMax()));
 	} catch (Exception e) {
-	    fail("Exception thrown");
+	    fail("Exception thrown" + e.getMessage());
 	}
     }
 
@@ -351,7 +351,7 @@ public class BSTTests {
 	    BST b = new BST();
 	    assertTrue("Empty tree reports not empty", b.empty());
 	} catch (Exception e) {
-	    fail("Exception thrown");
+	    fail("Exception thrown" + e.getMessage());
 	}
     }
 
@@ -362,7 +362,7 @@ public class BSTTests {
 	    b.insert("Hello World!");
 	    assertTrue("Non-empty tree reports empty", !b.empty());
 	} catch (Exception e) {
-	    fail("Exception thrown");
+	    fail("Exception thrown" + e.getMessage());
 	}
     }
 
@@ -374,7 +374,7 @@ public class BSTTests {
 	    b.remove("Hello World!");
 	    assertTrue("Empty tree reports not empty", b.empty());
 	} catch (Exception e) {
-	    fail("Exception thrown");
+	    fail("Exception thrown" + e.getMessage());
 	}
     }
 
@@ -387,7 +387,7 @@ public class BSTTests {
 	    b.remove("Hello World!");
 	    assertTrue("Non-empty tree reports empty", !b.empty());
 	} catch (Exception e) {
-	    fail("Exception thrown");
+	    fail("Exception thrown" + e.getMessage());
 	}
     }
 
@@ -402,7 +402,7 @@ public class BSTTests {
 	    b.insert("It's a whole new world!");
 	    assertTrue("Non-empty tree reports empty", !b.empty());
 	} catch (Exception e) {
-	    fail("Exception thrown");
+	    fail("Exception thrown" + e.getMessage());
 	}
     }
 
@@ -412,7 +412,7 @@ public class BSTTests {
 	    BST b = new BST();
 	    assertTrue("Empty tree contains something", !b.contains("A String"));
 	} catch (Exception e) {
-	    fail("Exception thrown");
+	    fail("Exception thrown" + e.getMessage());
 	}
     }
 
@@ -424,7 +424,7 @@ public class BSTTests {
 	    b.insert(s = "Hello World!");
 	    assertTrue("Non-empty tree doesn't contain its root", b.contains(s));
 	} catch (Exception e) {
-	    fail("Exception thrown");
+	    fail("Exception thrown" + e.getMessage());
 	}
     }
 
@@ -435,7 +435,7 @@ public class BSTTests {
 	    b.insert("Hello World!");
 	    assertTrue("Non-empty tree contains something other than its root", !b.contains("A String"));
 	} catch (Exception e) {
-	    fail("Exception thrown");
+	    fail("Exception thrown" + e.getMessage());
 	}
     }
 
@@ -453,7 +453,7 @@ public class BSTTests {
 	    b.insert("Yoshi's World!");
 	    assertTrue("Non-empty tree doesn't contain sub-element", b.contains(s));
 	} catch (Exception e) {
-	    fail("Exception thrown");
+	    fail("Exception thrown" + e.getMessage());
 	}
     }
 
@@ -470,7 +470,7 @@ public class BSTTests {
 	    b.insert("Yoshi's World!");
 	    assertTrue("Non-empty tree contain non-element", !b.contains("H3110 W0R1D"));
 	} catch (Exception e) {
-	    fail("Exception thrown");
+	    fail("Exception thrown" + e.getMessage());
 	}
     }
 
@@ -480,7 +480,7 @@ public class BSTTests {
 	    BST b = new BST();
 	    assertTrue("New tree not empty", b.size() == 0);
 	} catch (Exception e) {
-	    fail("Exception thrown");
+	    fail("Exception thrown" + e.getMessage());
 	}
     }
 
@@ -491,7 +491,7 @@ public class BSTTests {
 	    b.insert("Mario World!");
 	    assertTrue("Tree with only root does not have one element", b.size() == 1);
 	} catch (Exception e) {
-	    fail("Exception thrown");
+	    fail("Exception thrown" + e.getMessage());
 	}
     }
 
@@ -504,7 +504,7 @@ public class BSTTests {
 	    }
 	    assertTrue("Tree with " + MAX + " elements does not have " + MAX + " elements", b.size() == MAX);
 	} catch (Exception e) {
-	    fail("Exception thrown");
+	    fail("Exception thrown" + e.getMessage());
 	}
     }
 
@@ -522,7 +522,7 @@ public class BSTTests {
 	    assertTrue("Tree with " + MAX / 2 + " elements does not have " + MAX / 2 + " elements",
 		    b.size() == MAX / 2);
 	} catch (Exception e) {
-	    fail("Exception thrown");
+	    fail("Exception thrown" + e.getMessage());
 	}
     }
 
@@ -538,7 +538,7 @@ public class BSTTests {
 		b.remove(str);
 	    assertTrue("Empty tree does has elements", b.size() == 0);
 	} catch (Exception e) {
-	    fail("Exception thrown");
+	    fail("Exception thrown" + e.getMessage());
 	}
     }
 
@@ -548,7 +548,7 @@ public class BSTTests {
 	    BST b = new BST();
 	    assertTrue("New tree has wrong height", b.height() == -1);
 	} catch (Exception e) {
-	    fail("Exception thrown");
+	    fail("Exception thrown" + e.getMessage());
 	}
     }
 
@@ -559,7 +559,7 @@ public class BSTTests {
 	    b.insert("Mario World!");
 	    assertTrue("Root-only tree has wrong height", b.height() == 0);
 	} catch (Exception e) {
-	    fail("Exception thrown");
+	    fail("Exception thrown" + e.getMessage());
 	}
     }
 
@@ -576,7 +576,7 @@ public class BSTTests {
 	    b.insert("Yoshi's World!");
 	    assertTrue("Complete tree of height 2 has wrong height", b.height() == 2);
 	} catch (Exception e) {
-	    fail("Exception thrown");
+	    fail("Exception thrown" + e.getMessage());
 	}
     }
 
@@ -596,7 +596,7 @@ public class BSTTests {
 		b.remove(str);
 	    assertTrue("Complete tree of height 1 has wrong height", b.height() == 1);
 	} catch (Exception e) {
-	    fail("Exception thrown");
+	    fail("Exception thrown" + e.getMessage());
 	}
     }
 }
