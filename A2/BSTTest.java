@@ -233,7 +233,6 @@ public class BSTTest {
 
 	@Test
 	public void testSizeRemove() {
-
 		try {
 			BST tree = new BST();
 
