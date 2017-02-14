@@ -6,6 +6,7 @@ import org.junit.Test;
 
 public class BSTTests {
 
+    // needs to be an EVEN number, because of the way one of the tests works
     static final int MAX = 200;
 
     @Test
@@ -406,18 +407,196 @@ public class BSTTests {
     }
 
     @Test
-    public void testContains() {
-	fail("Not yet implemented");
+    public void testContainsEasy() {
+	try {
+	    BST b = new BST();
+	    assertTrue("Empty tree contains something", !b.contains("A String"));
+	} catch (Exception e) {
+	    fail("Exception thrown");
+	}
     }
 
     @Test
-    public void testSize() {
-	fail("Not yet implemented");
+    public void testContainsMedium() {
+	try {
+	    BST b = new BST();
+	    String s;
+	    b.insert(s = "Hello World!");
+	    assertTrue("Non-empty tree doesn't contain its root", b.contains(s));
+	} catch (Exception e) {
+	    fail("Exception thrown");
+	}
     }
 
     @Test
-    public void testHeight() {
-	fail("Not yet implemented");
+    public void testContainsMediumPlus() {
+	try {
+	    BST b = new BST();
+	    b.insert("Hello World!");
+	    assertTrue("Non-empty tree contains something other than its root", !b.contains("A String"));
+	} catch (Exception e) {
+	    fail("Exception thrown");
+	}
     }
 
+    @Test
+    public void testContainsHard() {
+	try {
+	    BST b = new BST();
+	    String s;
+	    b.insert("Hello World!");
+	    b.insert("A whole new World!");
+	    b.insert("000000");
+	    b.insert(s = "Elmo's World!");
+	    b.insert("Mario World!");
+	    b.insert("Luigi's World!");
+	    b.insert("Yoshi's World!");
+	    assertTrue("Non-empty tree doesn't contain sub-element", b.contains(s));
+	} catch (Exception e) {
+	    fail("Exception thrown");
+	}
+    }
+
+    @Test
+    public void testContainsHardPlus() {
+	try {
+	    BST b = new BST();
+	    b.insert("Hello World!");
+	    b.insert("A whole new World!");
+	    b.insert("000000");
+	    b.insert("Elmo's World!");
+	    b.insert("Mario World!");
+	    b.insert("Luigi's World!");
+	    b.insert("Yoshi's World!");
+	    assertTrue("Non-empty tree contain non-element", !b.contains("H3110 W0R1D"));
+	} catch (Exception e) {
+	    fail("Exception thrown");
+	}
+    }
+
+    @Test
+    public void testSizeEasy() {
+	try {
+	    BST b = new BST();
+	    assertTrue("New tree not empty", b.size() == 0);
+	} catch (Exception e) {
+	    fail("Exception thrown");
+	}
+    }
+
+    @Test
+    public void testSizeMedium() {
+	try {
+	    BST b = new BST();
+	    b.insert("Mario World!");
+	    assertTrue("Tree with only root does not have one element", b.size() == 1);
+	} catch (Exception e) {
+	    fail("Exception thrown");
+	}
+    }
+
+    @Test
+    public void testSizeHard() {
+	try {
+	    BST b = new BST();
+	    for (int i = 0; i < MAX; i++) {
+		b.insert(MyRandom.nextString());
+	    }
+	    assertTrue("Tree with " + MAX + " elements does not have " + MAX + " elements", b.size() == MAX);
+	} catch (Exception e) {
+	    fail("Exception thrown");
+	}
+    }
+
+    @Test
+    public void testSizeChallenge() {
+	try {
+	    BST b = new BST();
+	    String[] s = new String[MAX];
+	    for (int i = 0; i < MAX; i++) {
+		b.insert(s[i] = MyRandom.nextString());
+	    }
+	    for (int i = 0; i < MAX / 2; i++) {
+		b.remove(s[i]);
+	    }
+	    assertTrue("Tree with " + MAX / 2 + " elements does not have " + MAX / 2 + " elements",
+		    b.size() == MAX / 2);
+	} catch (Exception e) {
+	    fail("Exception thrown");
+	}
+    }
+
+    @Test
+    public void testSizeChallengePlus() {
+	try {
+	    BST b = new BST();
+	    String[] s = new String[MAX];
+	    for (int i = 0; i < MAX; i++) {
+		b.insert(s[i] = MyRandom.nextString());
+	    }
+	    for (String str : s)
+		b.remove(str);
+	    assertTrue("Empty tree does has elements", b.size() == 0);
+	} catch (Exception e) {
+	    fail("Exception thrown");
+	}
+    }
+
+    @Test
+    public void testHeightEasy() {
+	try {
+	    BST b = new BST();
+	    assertTrue("New tree has wrong height", b.height() == -1);
+	} catch (Exception e) {
+	    fail("Exception thrown");
+	}
+    }
+
+    @Test
+    public void testHeightMedium() {
+	try {
+	    BST b = new BST();
+	    b.insert("Mario World!");
+	    assertTrue("Root-only tree has wrong height", b.height() == 0);
+	} catch (Exception e) {
+	    fail("Exception thrown");
+	}
+    }
+
+    @Test
+    public void testHeightHard() {
+	try {
+	    BST b = new BST();
+	    b.insert("Hello World!");
+	    b.insert("A whole new World!");
+	    b.insert("000000");
+	    b.insert("Elmo's World!");
+	    b.insert("Mario World!");
+	    b.insert("Luigi's World!");
+	    b.insert("Yoshi's World!");
+	    assertTrue("Complete tree of height 2 has wrong height", b.height() == 2);
+	} catch (Exception e) {
+	    fail("Exception thrown");
+	}
+    }
+
+    @Test
+    public void testHeightChallenge() {
+	try {
+	    BST b = new BST();
+	    String[] s = new String[4];
+	    b.insert("Hello World!");
+	    b.insert("A whole new World!");
+	    b.insert(s[0] = "000000");
+	    b.insert(s[1] = "Elmo's World!");
+	    b.insert("Mario World!");
+	    b.insert(s[2] = "Luigi's World!");
+	    b.insert(s[3] = "Yoshi's World!");
+	    for (String str : s)
+		b.remove(str);
+	    assertTrue("Complete tree of height 1 has wrong height", b.height() == 1);
+	} catch (Exception e) {
+	    fail("Exception thrown");
+	}
+    }
 }
