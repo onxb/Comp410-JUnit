@@ -13,7 +13,7 @@ public class MyRandom {
      return lo + i;
   }
 
-	@SuppressWarnings("deprecation")
+  @SuppressWarnings("deprecation")
   public static String nextString(int lo, int hi) {
      int n = rand(lo, hi);
      byte b[] = new byte[n];
