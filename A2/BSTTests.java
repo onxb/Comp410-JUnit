@@ -535,7 +535,7 @@ public class BSTTests {
 	    }
 	    for (String str : s)
 		b.remove(str);
-	    assertTrue("Empty tree does has elements", b.size() == 0);
+	    assertTrue("Empty tree has elements", b.size() == 0);
 	} catch (Exception e) {
 	    fail("Exception thrown" + e.getMessage());
 	}
