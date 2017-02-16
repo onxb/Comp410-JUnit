@@ -228,7 +228,6 @@ public class BSTTests {
 	try {
 	    BST b = new BST();
 	    String s = MyRandom.nextString();
-	    System.out.println(s);
 	    for (int i = 0; i < MAX; i++) {
 		String next;
 		while ((next = MyRandom.nextString()).equals(s)) {
