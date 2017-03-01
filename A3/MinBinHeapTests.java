@@ -422,4 +422,35 @@ public class MinBinHeapTests {
 		assertEquals("cde", heap.getHeap()[3].getValue());
 		assertEquals(3, heap.size());
 	}
+	
+	// Adapted from http://stackoverflow.com/questions/4157159/algorithm-for-checking-if-an-array-with-n-elements-is-a-minimum-heap
+	public static <T extends Comparable<T>> boolean isMinHeap(EntryPair arr[], int rootIndex, int heapSize) {
+		boolean isMaxH = true;
+		int lChild = 2 * rootIndex + 1;
+		int rChild = 2 * rootIndex + 2;
+
+		// Nothing to compare here, as lChild itself is larger then arr length.
+		if (lChild >= heapSize) {
+			return true;
+		}
+
+		if (arr[rootIndex].getPriority() > arr[lChild].getPriority()) {
+			return false;
+		} else {
+			isMaxH = isMaxH && isMinHeap(arr, lChild, heapSize);
+		}
+
+		// rChild comparison not needed, return the current state of this root.
+		if (rChild >= arr.length) {
+			return isMaxH;
+		}
+
+		if (arr[rootIndex].getPriority() > arr[rChild].getPriority()) {
+			return false;
+		} else {
+			isMaxH = isMaxH && isMinHeap(arr, rChild, heapSize);
+		}
+
+		return isMaxH;
+	} 
 }
