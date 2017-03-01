@@ -407,67 +407,6 @@ public class MinBinHeapTests {
 
 		assertEquals("abc", heap.getMin().getValue());
 	}
-
-	@Test
-	public void buildEasy() {
-		Heap_Interface heap = new MinBinHeap();
-
-		EntryPair[] array = {
-				new EntryPair("abc", 0),
-				new EntryPair("bcd", 1)
-		};
-
-		heap.build(array);
-		assertEquals("abc", heap.getHeap()[1].getValue());
-		assertEquals("bcd", heap.getHeap()[2].getValue());
-		assertEquals(2, heap.size());
-
-		assertTrue("Heap created is not a min-heap", isMinHeap(heap.getHeap(), 1, heap.size()));
-	}
-
-	@Test
-	public void buildMedium() {
-		Heap_Interface heap = new MinBinHeap();
-
-		EntryPair[] array = {
-				new EntryPair("abc", 0),
-				new EntryPair("bcd", 3),
-				new EntryPair("cde", 2),
-				new EntryPair("def", 1)
-		};
-
-		heap.build(array);
-
-		assertEquals("abc", heap.getHeap()[1].getValue());
-		assertEquals("def", heap.getHeap()[2].getValue());
-		assertEquals("cde", heap.getHeap()[3].getValue());
-		assertEquals("bcd", heap.getHeap()[4].getValue());
-		assertEquals(4, heap.size());
-
-		assertTrue("Heap created is not a min-heap", isMinHeap(heap.getHeap(), 1, heap.size()));
-	}
-
-	@Test
-	public void buildHard() {
-		Heap_Interface heap = new MinBinHeap();
-
-		EntryPair[] array = {
-				new EntryPair("abc", 1),
-				new EntryPair("bcd", 2),
-				new EntryPair("cde", 3),
-				new EntryPair("def", 0),
-		};
-
-		heap.build(array);
-
-		assertEquals("def", heap.getHeap()[1].getValue());
-		assertEquals("abc", heap.getHeap()[2].getValue());
-		assertEquals("cde", heap.getHeap()[3].getValue());
-		assertEquals("bcd", heap.getHeap()[4].getValue());
-		assertEquals(4, heap.size());
-
-		assertTrue("Heap created is not a min-heap", isMinHeap(heap.getHeap(), 1, heap.size()));
-	}
 	
 	@Test
 	public void easyRemoveMin() {
