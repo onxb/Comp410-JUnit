@@ -424,7 +424,7 @@ public class MinBinHeapTests {
 	}
 	
 	// Adapted from http://stackoverflow.com/questions/4157159/algorithm-for-checking-if-an-array-with-n-elements-is-a-minimum-heap
-	public static <T extends Comparable<T>> boolean isMinHeap(EntryPair arr[], int rootIndex, int heapSize) {
+	public static boolean isMinHeap(EntryPair arr[], int rootIndex, int heapSize) {
 		boolean isMaxH = true;
 		int lChild = 2 * rootIndex + 1;
 		int rChild = 2 * rootIndex + 2;
