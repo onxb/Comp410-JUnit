@@ -2,9 +2,9 @@ package MinBinHeap_A3;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
-// Tests created by Christopher Lee
-public class MinBinHeapTests {
 
+public class MinBinHeapTests {
+	// Tests created by Christopher Lee
 	@Test
 	public void testSizeEmpty() {
 		try {
@@ -257,4 +257,200 @@ public class MinBinHeapTests {
 			fail("Exception thrown: " + e.getMessage());
 		}
 	}
+	
+	// Tests created by Zach Burk
+	@Test
+	public void insertEasy() {
+		Heap_Interface heap = new MinBinHeap();
+		heap.insert(new EntryPair("abc", 0));
+		heap.insert(new EntryPair("bcd", 1));
+
+		assertEquals("abc", heap.getHeap()[1].getValue());
+		assertEquals("bcd", heap.getHeap()[2].getValue());
+		assertEquals(2, heap.size());
+
+		assertTrue("Heap created is not a min-heap", isMinHeap(heap.getHeap(), 1, heap.size()));
+	}
+
+	@Test
+	public void insertMedium() {
+		Heap_Interface heap = new MinBinHeap();
+		heap.insert(new EntryPair("abc", 0));
+		heap.insert(new EntryPair("bcd", 3));
+		heap.insert(new EntryPair("cde", 2));
+		heap.insert(new EntryPair("def", 1));
+
+		assertEquals("abc", heap.getHeap()[1].getValue());
+		assertEquals("def", heap.getHeap()[2].getValue());
+		assertEquals("cde", heap.getHeap()[3].getValue());
+		assertEquals("bcd", heap.getHeap()[4].getValue());
+		assertEquals(4, heap.size());
+
+		assertTrue("Heap created is not a min-heap", isMinHeap(heap.getHeap(), 1, heap.size()));
+	}
+
+	@Test
+	public void insertHard() {
+		Heap_Interface heap = new MinBinHeap();
+		heap.insert(new EntryPair("abc", 1));
+		heap.insert(new EntryPair("bcd", 2));
+		heap.insert(new EntryPair("cde", 3));
+		heap.insert(new EntryPair("def", 0));
+
+		assertEquals("def", heap.getHeap()[1].getValue());
+		assertEquals("abc", heap.getHeap()[2].getValue());
+		assertEquals("cde", heap.getHeap()[3].getValue());
+		assertEquals("bcd", heap.getHeap()[4].getValue());
+		assertEquals(4, heap.size());
+
+		assertTrue("Heap created is not a min-heap", isMinHeap(heap.getHeap(), 1, heap.size()));
+	}
+
+	@Test
+	public void insertLectureSlide() {
+		Heap_Interface heap = new MinBinHeap();
+		heap.insert(new EntryPair("abc", 3));
+		heap.insert(new EntryPair("bcd", 7));
+		heap.insert(new EntryPair("cde", 4));
+		heap.insert(new EntryPair("def", 16));
+		heap.insert(new EntryPair("efg", 12));
+		heap.insert(new EntryPair("fgh", 11));
+		heap.insert(new EntryPair("ghi", 9));
+		heap.insert(new EntryPair("hij", 31));
+		heap.insert(new EntryPair("ijk", 18));
+		heap.insert(new EntryPair("jkl", 21));
+
+		assertEquals("abc", heap.getHeap()[1].getValue());
+		assertEquals("bcd", heap.getHeap()[2].getValue());
+		assertEquals("cde", heap.getHeap()[3].getValue());
+		assertEquals("def", heap.getHeap()[4].getValue());
+		assertEquals("efg", heap.getHeap()[5].getValue());
+		assertEquals("fgh", heap.getHeap()[6].getValue());
+		assertEquals("ghi", heap.getHeap()[7].getValue());
+		assertEquals("hij", heap.getHeap()[8].getValue());
+		assertEquals("ijk", heap.getHeap()[9].getValue());
+		assertEquals("jkl", heap.getHeap()[10].getValue());
+		assertEquals(10, heap.size());
+
+		assertTrue("Heap created is not a min-heap", isMinHeap(heap.getHeap(), 1, heap.size()));
+	}
+
+	@Test
+	public void insertLectureSlideSwap() {
+		Heap_Interface heap = new MinBinHeap();
+		heap.insert(new EntryPair("abc", 3));
+		heap.insert(new EntryPair("bcd", 7));
+		heap.insert(new EntryPair("cde", 4));
+		heap.insert(new EntryPair("def", 16));
+		heap.insert(new EntryPair("efg", 12));
+		heap.insert(new EntryPair("fgh", 11));
+		heap.insert(new EntryPair("ghi", 9));
+		heap.insert(new EntryPair("hij", 31));
+		heap.insert(new EntryPair("ijk", 18));
+		heap.insert(new EntryPair("jkl", 21));
+
+		heap.insert(new EntryPair("klm", 10));
+
+		assertEquals("abc", heap.getHeap()[1].getValue());
+		assertEquals("bcd", heap.getHeap()[2].getValue());
+		assertEquals("cde", heap.getHeap()[3].getValue());
+		assertEquals("def", heap.getHeap()[4].getValue());
+		assertEquals("klm", heap.getHeap()[5].getValue());
+		assertEquals("fgh", heap.getHeap()[6].getValue());
+		assertEquals("ghi", heap.getHeap()[7].getValue());
+		assertEquals("hij", heap.getHeap()[8].getValue());
+		assertEquals("ijk", heap.getHeap()[9].getValue());
+		assertEquals("jkl", heap.getHeap()[10].getValue());
+		assertEquals("efg", heap.getHeap()[11].getValue());
+		assertEquals(11, heap.size());
+
+		assertTrue("Heap created is not a min-heap", isMinHeap(heap.getHeap(), 1, heap.size()));
+	}
+
+	@Test
+	public void insertLectureSlideSwapUp() {
+		Heap_Interface heap = new MinBinHeap();
+		heap.insert(new EntryPair("abc", 3));
+		heap.insert(new EntryPair("bcd", 7));
+		heap.insert(new EntryPair("cde", 4));
+		heap.insert(new EntryPair("def", 16));
+		heap.insert(new EntryPair("efg", 12));
+		heap.insert(new EntryPair("fgh", 11));
+		heap.insert(new EntryPair("ghi", 9));
+		heap.insert(new EntryPair("hij", 31));
+		heap.insert(new EntryPair("ijk", 18));
+		heap.insert(new EntryPair("jkl", 21));
+
+		heap.insert(new EntryPair("klm", 2));
+
+		assertEquals("klm", heap.getHeap()[1].getValue());
+		assertEquals("abc", heap.getHeap()[2].getValue());
+		assertEquals("cde", heap.getHeap()[3].getValue());
+		assertEquals("def", heap.getHeap()[4].getValue());
+		assertEquals("bcd", heap.getHeap()[5].getValue());
+		assertEquals("fgh", heap.getHeap()[6].getValue());
+		assertEquals("ghi", heap.getHeap()[7].getValue());
+		assertEquals("hij", heap.getHeap()[8].getValue());
+		assertEquals("ijk", heap.getHeap()[9].getValue());
+		assertEquals("jkl", heap.getHeap()[10].getValue());
+		assertEquals("efg", heap.getHeap()[11].getValue());
+		assertEquals(11, heap.size());
+
+		assertTrue("Heap created is not a min-heap", isMinHeap(heap.getHeap(), 1, heap.size()));
+	}
+
+	@Test
+	public void findMin() {
+		Heap_Interface heap = new MinBinHeap();
+		heap.insert(new EntryPair("abc", 0));
+		heap.insert(new EntryPair("bcd", 1));
+
+		assertEquals("abc", heap.getMin().getValue());
+	}
+	
+	@Test
+	public void easyRemoveMin() {
+		Heap_Interface heap = new MinBinHeap();
+		heap.insert(new EntryPair("abc", 0));
+		heap.insert(new EntryPair("bcd", 3));
+		heap.insert(new EntryPair("cde", 2));
+		heap.insert(new EntryPair("def", 1));
+		heap.delMin();
+
+		assertEquals("def", heap.getHeap()[1].getValue());
+		assertEquals("bcd", heap.getHeap()[2].getValue());
+		assertEquals("cde", heap.getHeap()[3].getValue());
+		assertEquals(3, heap.size());
+	}
+	
+	// Adapted from http://stackoverflow.com/questions/4157159/algorithm-for-checking-if-an-array-with-n-elements-is-a-minimum-heap
+	public static boolean isMinHeap(EntryPair arr[], int rootIndex, int heapSize) {
+		boolean isMaxH = true;
+		int lChild = 2 * rootIndex + 1;
+		int rChild = 2 * rootIndex + 2;
+
+		// Nothing to compare here, as lChild itself is larger then arr length.
+		if (lChild >= heapSize) {
+			return true;
+		}
+
+		if (arr[rootIndex].getPriority() > arr[lChild].getPriority()) {
+			return false;
+		} else {
+			isMaxH = isMaxH && isMinHeap(arr, lChild, heapSize);
+		}
+
+		// rChild comparison not needed, return the current state of this root.
+		if (rChild >= arr.length) {
+			return isMaxH;
+		}
+
+		if (arr[rootIndex].getPriority() > arr[rChild].getPriority()) {
+			return false;
+		} else {
+			isMaxH = isMaxH && isMinHeap(arr, rChild, heapSize);
+		}
+
+		return isMaxH;
+	} 
 }
