@@ -428,12 +428,12 @@ public class MinBinHeapTests {
 		Heap_Interface heap = new MinBinHeap();
 
 		EntryPair[] array = {
-				new EntryPair("abc", 6),
-				new EntryPair("bcd", 12),
-				new EntryPair("cde", 9),
-				new EntryPair("def", 4),
-				new EntryPair("efg", 5),
-				new EntryPair("fgh", 3),
+			new EntryPair("abc", 6),
+			new EntryPair("bcd", 12),
+			new EntryPair("cde", 9),
+			new EntryPair("def", 4),
+			new EntryPair("efg", 5),
+			new EntryPair("fgh", 3),
 		};
 
 		heap.build(array);
