@@ -136,7 +136,7 @@ public class MinBinHeapTests {
 			for (int i=0;i<heapPriorities.length;i++) {
 				heapPriorities[i] = heapArray[i+1].getPriority();
 			}
-			assertArrayEquals("insert created different heap than expected", 
+			assertArrayEquals("insert created different heap than expected",
 					collection, heapPriorities);
 		} catch (Exception e) {
 			fail("Exception thrown: " + e.getMessage());
@@ -183,7 +183,7 @@ public class MinBinHeapTests {
 			fail("Exception thrown: " + e.getMessage());
 		}
 	}
-	
+
 	@Test
 	public void testDelMinC() {
 		try {
@@ -244,20 +244,20 @@ public class MinBinHeapTests {
 			collectionToBuild[8]=new EntryPair("a",24);
 			collectionToBuild[9]=new EntryPair("o",14);
 			heap.build(collectionToBuild);
-			
+
 			int[] collection= {0,12,4,24,14,18,6,38,30,15};
 			int[] heapPriorities = new int[10];
 			EntryPair[] heapArray = heap.getHeap();
 			for (int i=0;i<heapPriorities.length;i++) {
 				heapPriorities[i] = heapArray[i+1].getPriority();
 			}
-			assertArrayEquals("insert created different heap than expected", 
+			assertArrayEquals("insert created different heap than expected",
 					collection, heapPriorities);
 		} catch (Exception e) {
 			fail("Exception thrown: " + e.getMessage());
 		}
 	}
-	
+
 	// Tests created by Zach Burk
 	@Test
 	public void insertEasy() {
@@ -407,7 +407,7 @@ public class MinBinHeapTests {
 
 		assertEquals("abc", heap.getMin().getValue());
 	}
-	
+
 	@Test
 	public void easyRemoveMin() {
 		Heap_Interface heap = new MinBinHeap();
@@ -422,7 +422,7 @@ public class MinBinHeapTests {
 		assertEquals("cde", heap.getHeap()[3].getValue());
 		assertEquals(3, heap.size());
 	}
-	
+
 	@Test
 	public void buildLecture() {
 		Heap_Interface heap = new MinBinHeap();
@@ -447,7 +447,7 @@ public class MinBinHeapTests {
 
 		assertEquals(6, heap.size());
 	}
-	
+
 	// Adapted from http://stackoverflow.com/questions/4157159/algorithm-for-checking-if-an-array-with-n-elements-is-a-minimum-heap
 	public static boolean isMinHeap(EntryPair arr[], int rootIndex, int heapSize) {
 		boolean isMinH = true;
@@ -477,5 +477,5 @@ public class MinBinHeapTests {
 		}
 
 		return isMinH;
-	} 
+	}
 }
