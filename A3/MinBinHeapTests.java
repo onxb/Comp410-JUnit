@@ -462,7 +462,7 @@ public class MinBinHeapTests {
         if (arr[rootIndex].getPriority() > arr[lChild].getPriority()) {
             return false;
         } else {
-            isMinH = isMaxH && isMinHeap(arr, lChild, heapSize);
+            isMinH = isMinH && isMinHeap(arr, lChild, heapSize);
         }
 
         // rChild comparison not needed, return the current state of this root.
@@ -473,7 +473,7 @@ public class MinBinHeapTests {
         if (arr[rootIndex].getPriority() > arr[rChild].getPriority()) {
             return false;
         } else {
-            isMinH = isMaxH && isMinHeap(arr, rChild, heapSize);
+            isMinH = isMinH && isMinHeap(arr, rChild, heapSize);
         }
 
         return isMinH;
