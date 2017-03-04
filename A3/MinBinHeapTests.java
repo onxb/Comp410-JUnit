@@ -435,6 +435,31 @@ public class MinBinHeapTests {
 
         assertEquals(6, heap.size());
     }
+    
+    @Test
+	public void buildLargeHeapAndWreck() {
+		Heap_Interface heap = new MinBinHeap();
+
+		EntryPair[] array = new EntryPair[9998];
+		for (int i = 0; i < 9998; i++) {
+			array[i] = new EntryPair("abc", (int) (i * Math.random() * 100));
+		}
+
+		heap.build(array);
+		
+		heap.insert(new EntryPair("lastOne", 999999999));
+		assertEquals("lastOne", heap.getHeap()[9999].getValue());
+		assertEquals("wrong heap size", heap.size(), 9999);
+
+		for (int i = 0; i < 9999; i++) {
+			heap.delMin();
+			assertEquals("wrong heap size at " + i, 9998 - i, heap.size());
+		}
+		
+		for (int i = 1; i < 9999; i++) {
+			assertEquals("didn't actually delete at " + i, null, heap.getHeap()[i]);
+		}
+	}
 
     // Adapted from
     // http://stackoverflow.com/questions/4157159/algorithm-for-checking-if-an-array-with-n-elements-is-a-minimum-heap
