@@ -1,4 +1,4 @@
-#Assignment 2: Binary Search Tree
+# Assignment 2: Binary Search Tree
 
 This requires a MyRandom class, which can be found
 [here](http://www.unc.edu/~stotts/comp410/MyRandom.java)
