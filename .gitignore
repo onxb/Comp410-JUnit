@@ -3,7 +3,7 @@
 
 # no backups
 *.~
-*.swp
+.*.swp
 
 # pesky macOS DS_Store files
 .DS_Store
