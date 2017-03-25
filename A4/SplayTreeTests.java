@@ -444,9 +444,11 @@ public class SplayTreeTests {
     }
 
     public boolean treeEquals(BST_Node a, BST_Node b) {
+        if (a == null)
+            return b == null;
         if (a.getHeight() != b.getHeight())
             return false;
-        if (a.par != b.par)
+        if (a.par != null && b.par != null && !a.par.getData().equals(b.par.getData()))
             return false;
         if (!a.getData().equals(b.getData()))
             return false;
