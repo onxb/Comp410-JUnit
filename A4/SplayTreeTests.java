@@ -44,15 +44,15 @@ public class SplayTreeTests {
             tree.insert("aa");
             
             BST_Node expected = new BST_Node("aa", null, null, null);
-            BST_Node bb,ff,cc,dd,zz,ss;
+            BST_Node bb,ff,cc,ee,zz,gg;
             expected.right = bb = new BST_Node("bb", null, null, expected);
             bb.right = ff = new BST_Node("ff", null, null, bb);
             ff.left = cc = new BST_Node("cc", null, null, ff);
-            cc.right = dd = new BST_Node("dd", null, null, cc);
-            dd.right = new BST_Node("ee", null, null, dd);
-            ff.right = zz = new BST_Node("zz", null, null, ff);
-            zz.left = ss = new BST_Node("ss", null, null, zz);
-            ss.left = new BST_Node("gg", null, null, ss);
+            cc.right = ee = new BST_Node("ee", null, null, cc);
+            ee.left = new BST_Node("dd", null, null, ee);
+            ff.right = gg = new BST_Node("gg", null, null, ff);
+            gg.right = zz = new BST_Node("zz", null, null, gg);
+            zz.left = new BST_Node("ss", null, null, zz);
 
             assertEquals("findMin returns wrong node", "aa", tree.findMin());
             assertTrue("tree not splayed correctly", treeEquals(tree.getRoot(), expected));
@@ -78,15 +78,15 @@ public class SplayTreeTests {
             tree.insert("aa");
             
             BST_Node expected = new BST_Node("zz", null, null, null);
-            BST_Node bb,ff,cc,dd,aa,ss;
-            expected.left = aa = new BST_Node("aa", null, null, expected);
-            aa.right = ff = new BST_Node("ff", null, null, aa);
-            ff.left = bb = new BST_Node("bb", null, null, ff);
-            bb.right = cc = new BST_Node("cc", null, null, bb);
-            cc.right = dd = new BST_Node("dd", null, null, cc);
-            dd.right = new BST_Node("ee", null, null, dd);
-            ff.right = ss = new BST_Node("ss", null, null, ff);
-            ss.left = new BST_Node("gg", null, null, ss);
+            BST_Node bb,ff,cc,gg,ee;
+            expected.left = bb = new BST_Node("bb", null, null, expected);
+            bb.left =  new BST_Node("aa", null, null, bb);
+            bb.right = gg = new BST_Node("gg", null, null, bb);
+            gg.right = new BST_Node("ss", null, null, gg);
+            gg.left = ff = new BST_Node("ff", null, null, gg);
+            ff.left = cc = new BST_Node("cc", null, null, ff);
+            cc.right = ee = new BST_Node("ee", null, null, cc);
+            ee.left = new BST_Node("dd", null, null, ee);
 
             assertEquals("findMax returns wrong node", "zz", tree.findMax());
             assertTrue("tree not splayed correctly", treeEquals(tree.getRoot(), expected));
@@ -112,15 +112,15 @@ public class SplayTreeTests {
             tree.insert("aa");
             
             BST_Node expected = new BST_Node("cc");
-            BST_Node aa,ff,dd,zz,ss;
+            BST_Node aa,ff,ee,zz,gg;
             expected.left = aa = new BST_Node("aa", null, null, expected);
             aa.right = new BST_Node("bb", null, null, aa);
             expected.right = ff = new BST_Node("ff", null, null, expected);
-            ff.left = dd = new BST_Node("dd", null, null, ff);
-            dd.right = new BST_Node("ee", null, null, dd);
-            ff.right = zz = new BST_Node("zz", null, null, ff);
-            zz.left = ss = new BST_Node("ss", null, null, zz);
-            ss.left = new BST_Node("gg", null, null, ss);
+            ff.left = ee = new BST_Node("ee", null, null, ff);
+            ee.left = new BST_Node("dd", null, null, ee);
+            ff.right = gg = new BST_Node("gg", null, null, ff);
+            gg.right = zz = new BST_Node("zz", null, null, gg);
+            zz.left = new BST_Node("ss", null, null, zz);
 
             assertTrue("contains returns false", tree.contains("cc"));
             assertTrue("tree not splayed correctly", treeEquals(tree.getRoot(), expected));
@@ -146,15 +146,15 @@ public class SplayTreeTests {
             tree.insert("aa");
             
             BST_Node expected = new BST_Node("bb", null, null, null);
-            BST_Node ff,cc,dd,zz,ss;
-            expected.left = new BST_Node("bb", null, null, expected);
+            BST_Node ff,cc,ee,zz,gg;
+            expected.left = new BST_Node("aa", null, null, expected);
             expected.right = ff = new BST_Node("ff", null, null, expected);
             ff.left = cc = new BST_Node("cc", null, null, ff);
-            cc.right = dd = new BST_Node("dd", null, null, cc);
-            dd.right = new BST_Node("ee", null, null, dd);
-            ff.right = zz = new BST_Node("zz", null, null, ff);
-            zz.left = ss = new BST_Node("ss", null, null, zz);
-            ss.left = new BST_Node("gg", null, null, ss);
+            cc.right = ee = new BST_Node("ee", null, null, cc);
+            ee.left = new BST_Node("dd", null, null, ee);
+            ff.right = gg = new BST_Node("gg", null, null, ff);
+            gg.right = zz = new BST_Node("zz", null, null, gg);
+            zz.left = new BST_Node("ss", null, null, zz);
 
             assertFalse("contains returns true", tree.contains("ad"));
             assertTrue("tree not splayed correctly", treeEquals(tree.getRoot(), expected));
@@ -209,7 +209,7 @@ public class SplayTreeTests {
             e.left = c = new BST_Node("c", null, null, e);
             c.right = new BST_Node("d", null, null, c);
             expected.right = g = new BST_Node("g", null, null, expected);
-            g.right = new BST_Node("s", null, null, expected);
+            g.right = new BST_Node("s", null, null, g);
             
             assertEquals("height returned wrong height", 4, tree.height());
             assertTrue("tree not splayed correctly", treeEquals(tree.getRoot(), expected));
@@ -240,7 +240,7 @@ public class SplayTreeTests {
             b.right = c = new BST_Node("c", null, null, b);
             c.right = new BST_Node("d", null, null, c);
             expected.right = g = new BST_Node("g", null, null, expected);
-            g.right = new BST_Node("s", null, null, expected);
+            g.right = new BST_Node("s", null, null, g);
 
             assertEquals("height returned wrong height", 3, tree.height());
             assertTrue("tree not splayed correctly", treeEquals(tree.getRoot(), expected));
@@ -302,7 +302,7 @@ public class SplayTreeTests {
             e.left = c = new BST_Node("c", null, null, e);
             c.right = new BST_Node("d", null, null, c);
             expected.right = g = new BST_Node("g", null, null, expected);
-            g.right = new BST_Node("s", null, null, expected);
+            g.right = new BST_Node("s", null, null, g);
 
             assertEquals("size returned wrong size", 8, tree.size());
             assertTrue("tree not splayed correctly", treeEquals(tree.getRoot(), expected));
@@ -358,14 +358,14 @@ public class SplayTreeTests {
             tree.insert("f");
             
             BST_Node expected = new BST_Node("f");
-            BST_Node b,e,d,g;
-            expected.left = b = new BST_Node("b", null, null, expected);
-            b.left = new BST_Node("a", null, null, b);
-            b.right = e = new BST_Node("e", null, null, b);
-            e.left = d = new BST_Node("d", null, null, e);
-            d.left = new BST_Node("c", null, null, d);
+            BST_Node b,d,g;
             expected.right = g = new BST_Node("g", null, null, expected);
-            g.right = new BST_Node("s", null, null, expected);
+            g.right = new BST_Node("s", null, null, g);
+            expected.left = d = new BST_Node("d", null, null, expected);
+            d.right = new BST_Node("e", null, null, d);
+            d.left = b = new BST_Node("b", null, null, d);
+            b.left = new BST_Node("a", null, null, b);
+            b.right = new BST_Node("c", null, null, b);
 
             assertEquals("inserted wrong node into spot", "s", tree.root.right.right.getData());
             assertEquals("inserted wrong node into spot", "g", tree.root.right.getData());
