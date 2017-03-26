@@ -250,7 +250,7 @@ public class SplayTreeTests {
     }
 
     @Test
-    public void testHeightRemoveOneChild() {
+    public void testHeightRemoveOne() {
         try {
             SPLT tree = new SPLT();
 
@@ -376,7 +376,7 @@ public class SplayTreeTests {
     }
 
     @Test
-    public void testRemoveOneChild() {
+    public void testRemoveTwo() {
         try {
             SPLT tree = new SPLT();
 
@@ -406,7 +406,7 @@ public class SplayTreeTests {
     }
 
     @Test
-    public void testRemoveTwoChildren() {
+    public void testRemoveThree() {
         try {
             SPLT tree = new SPLT();
 
