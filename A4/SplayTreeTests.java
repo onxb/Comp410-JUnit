@@ -442,6 +442,15 @@ public class SplayTreeTests {
             fail("Exception thrown: " + e.getMessage());
         }
     }
+    
+    @Test
+    public void sizeMedium() {
+        SPLT tree = new SPLT();
+        tree.insert("a");
+        tree.insert("b");
+        tree.remove("a");
+        assertEquals("size not correct", 1, tree.size());
+    }
 
     public boolean treeEquals(BST_Node a, BST_Node b) {
         if (a == null)
