@@ -472,4 +472,590 @@ public class SplayTreeTests {
             right = treeEquals(a.right, b.right);
         return left && right;
     }
+    
+    // needs to be an EVEN number, because of the way one of the tests works
+    static final int MAX = 200;
+
+    @Test
+    public void testSPLT() {
+        try {
+            SPLT b = new SPLT();
+            assertTrue("Constructor did not establish required semantics",
+                    b.empty() && b.size() == 0 && b.getRoot() == null);
+        } catch (Exception e) {
+            fail("Exception thrown " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testGetRootEasy() {
+        try {
+            SPLT b = new SPLT();
+            String s;
+            b.insert(s = "Hello World!");
+            assertTrue("getRoot returned wrong value", s.equals(b.getRoot().getData()));
+        } catch (Exception e) {
+            fail("Exception thrown " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testGetRootMedium() {
+        try {
+            SPLT b = new SPLT();
+            String s;
+            b.insert("Hello World!");
+            b.insert(s = "Other world (after)...");
+            assertTrue("getRoot returned wrong value", s.equals(b.getRoot().getData()));
+        } catch (Exception e) {
+            fail("Exception thrown " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testGetRootMediumPlus() {
+        try {
+            SPLT b = new SPLT();
+            String s;
+            b.insert("Hello World!");
+            b.insert(s = "Before world...");
+            assertTrue("getRoot returned wrong value", s.equals(b.getRoot().getData()));
+        } catch (Exception e) {
+            fail("Exception thrown " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testGetRootChallenge() {
+        try {
+            SPLT b = new SPLT();
+            String s;
+            b.insert("Hello World!");
+            b.insert("Other world (after)...");
+            b.insert(s = "Before world...");
+            assertTrue("getRoot returned wrong value", s.equals(b.getRoot().getData()));
+        } catch (Exception e) {
+            fail("Exception thrown " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testInsertEasy() {
+        try {
+            SPLT b = new SPLT();
+            int size = b.size();
+            b.insert("Hello World!");
+            assertEquals("Legal first insert failed", size + 1, b.size());
+        } catch (Exception e) {
+            fail("Exception thrown " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testInsertMedium() {
+        try {
+            SPLT b = new SPLT();
+            b.insert("Mario World!");
+            int size = b.size();
+            b.insert("Hello World!");
+            assertEquals("Legal insert failed", size + 1, b.size());
+        } catch (Exception e) {
+            fail("Exception thrown " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testInsertMediumPlus() {
+        try {
+            SPLT b = new SPLT();
+            b.insert("Super Mario World!");
+            int size = b.size();
+            b.insert("Super Mario World!");
+            assertNotEquals("Illegal insert returned true", size + 1, b.size());
+        } catch (Exception e) {
+            fail("Exception thrown " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testInsertHard() {
+        try {
+            SPLT b = new SPLT();
+            for (int i = 0; i < MAX; i++) {
+                String next;
+                while ((next = MyRandom.nextString()).equals("Hello World!")) {
+                }
+                b.insert(next);
+            }
+            int size = b.size();
+            b.insert("Hello World!");
+            assertEquals("Legal insert failed", size + 1, b.size());
+        } catch (Exception e) {
+            fail("Exception thrown " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testRemoveEasy() {
+        try {
+            SPLT b = new SPLT();
+            String s;
+            b.insert("Hello World!");
+            b.insert("Yoshi's World");
+            b.insert(s = "a Mario's World");
+            int size = b.size();
+            b.remove(s);
+            assertEquals("Removing root node failed", size - 1, b.size());
+        } catch (Exception e) {
+            fail("Exception thrown " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testRemoveMedium() {
+        try {
+            SPLT b = new SPLT();
+            String s;
+            b.insert("Hello World!");
+            b.insert(s = "Yoshi's World");
+            b.insert("Mario's World");
+            int size = b.size();
+            b.remove(s);
+            assertEquals("Removing non-root node",  size - 1, b.size());
+        } catch (Exception e) {
+            fail("Exception thrown " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testRemoveHard() {
+        try {
+            SPLT b = new SPLT();
+            String s;
+            b.insert("Hello World!");
+            b.insert(s = "Yoshi's World");
+            b.insert("Mario's World");
+            b.insert("Zuigi's World");
+            int size = b.size();
+            b.remove(s);
+            assertEquals("Removing node failed", size - 1, b.size());
+        } catch (Exception e) {
+            fail("Exception thrown " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testRemoveChallenge() {
+        try {
+            SPLT b = new SPLT();
+            String s;
+            b.insert(s = "Hello World!");
+            int size = b.size();
+            b.remove(s);
+            assertEquals("Removing root with no children failed", size - 1, b.size());
+        } catch (Exception e) {
+            fail("Exception thrown " + e.getMessage());
+        }
+    }
+    
+    @Test
+    public void testRemoveChallengePlus() {
+        try {
+            SPLT b = new SPLT();
+            String s;
+            b.insert(s = "Hello World!");
+            b.insert("Yoshi's World");
+            b.insert("a Mario's World");
+            int size = b.size();
+            b.remove(s);
+            assertEquals("Removing node failed", size - 1, b.size());
+        } catch (Exception e) {
+            fail("Exception thrown " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testRemoveFalseEasy() {
+        try {
+            SPLT b = new SPLT();
+            int size = b.size();
+            b.remove("any string");
+            assertEquals("Removing node in empty tree succeeded", size, b.size());
+        } catch (Exception e) {
+            fail("Exception thrown " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testRemoveFalseMedium() {
+        try {
+            SPLT b = new SPLT();
+            b.insert("Hello World!");
+            b.insert("Yoshi's World");
+            b.insert("a Mario's World");
+            int size = b.size();
+            b.remove("any string");
+            assertEquals("Removing nonexistent node in tree succeeded", size, b.size());
+        } catch (Exception e) {
+            fail("Exception thrown " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testRemoveFalseHard() {
+        try {
+            SPLT b = new SPLT();
+            String s = MyRandom.nextString();
+            for (int i = 0; i < MAX; i++) {
+                String next;
+                while ((next = MyRandom.nextString()).equals(s)) {
+                }
+                b.insert(next);
+            }
+            int size = b.size();
+            b.remove(s);
+            assertEquals("Removing nonexistent node in tree succeeded", size, b.size());
+        } catch (Exception e) {
+            fail("Exception thrown " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testFindMinEasy() {
+        try {
+            SPLT b = new SPLT();
+            assertTrue("Empty tree returned non-null min value", b.findMin() == null);
+        } catch (Exception e) {
+            fail("Exception thrown " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testFindMinMedium() {
+        try {
+            SPLT b = new SPLT();
+            String s;
+            b.insert(s = "Hello World!");
+            assertTrue("Min incorrect", s.equals(b.findMin()));
+            assertTrue("Tree malformed", s.equals(b.getRoot().getData()));
+        } catch (Exception e) {
+            fail("Exception thrown " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testFindMinHard() {
+        try {
+            SPLT b = new SPLT();
+            String s;
+            b.insert(s = "Hello World!");
+            b.insert("Yoshi's World!");
+            b.insert("Mario's World!");
+            assertTrue("Min incorrect", s.equals(b.findMin()));
+            assertTrue("Tree malformed", s.equals(b.getRoot().getData()));
+        } catch (Exception e) {
+            fail("Exception thrown " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testFindMinChallenge() {
+        try {
+            SPLT b = new SPLT();
+            String s;
+            b.insert("Hello World!");
+            b.insert("Yoshi's World!");
+            b.insert("Mario's World!");
+            b.insert(s = "A Toad's World!");
+            assertTrue("Min incorrect", s.equals(b.findMin()));
+            assertTrue("Tree malformed", s.equals(b.getRoot().getData()));
+        } catch (Exception e) {
+            fail("Exception thrown " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testFindMaxEasy() {
+        try {
+            SPLT b = new SPLT();
+            assertTrue("Empty tree returned non-null max value", b.findMax() == null);
+        } catch (Exception e) {
+            fail("Exception thrown " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testFindMaxMedium() {
+        try {
+            SPLT b = new SPLT();
+            String s;
+            b.insert(s = "Hello World!");
+            assertTrue("Max incorrect", s.equals(b.findMax()));
+            assertTrue("Tree malformed", s.equals(b.getRoot().getData()));
+        } catch (Exception e) {
+            fail("Exception thrown " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testFindMaxHard() {
+        try {
+            SPLT b = new SPLT();
+            String s;
+            b.insert("Hello World!");
+            b.insert(s = "Yoshi's World!");
+            b.insert("Mario's World!");
+            assertTrue("Max incorrect", s.equals(b.findMax()));
+            assertTrue("Tree malformed", s.equals(b.getRoot().getData()));
+        } catch (Exception e) {
+            fail("Exception thrown " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testFindMaxChallenge() {
+        try {
+            SPLT b = new SPLT();
+            String s;
+            b.insert("Hello World!");
+            b.insert("Yoshi's World!");
+            b.insert("Mario's World!");
+            b.insert("A Toad's World!");
+            b.insert(s = "Zuigi's World!");
+            assertTrue("Max incorrect", s.equals(b.findMax()));
+            assertTrue("Tree malformed", s.equals(b.getRoot().getData()));
+        } catch (Exception e) {
+            fail("Exception thrown " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testEmptyEasy() {
+        try {
+            SPLT b = new SPLT();
+            assertTrue("Empty tree reports not empty", b.empty());
+        } catch (Exception e) {
+            fail("Exception thrown " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testEmptyMedium() {
+        try {
+            SPLT b = new SPLT();
+            b.insert("Hello World!");
+            assertTrue("Non-empty tree reports empty", !b.empty());
+        } catch (Exception e) {
+            fail("Exception thrown " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testEmptyHard() {
+        try {
+            SPLT b = new SPLT();
+            b.insert("Hello World!");
+            b.remove("Hello World!");
+            assertTrue("Empty tree reports not empty", b.empty());
+        } catch (Exception e) {
+            fail("Exception thrown " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testEmptyChallenge() {
+        try {
+            SPLT b = new SPLT();
+            String s;
+            b.insert("Hello World!");
+            b.insert(s = "Mario World!");
+            b.remove("Hello World!");
+            assertTrue("Non-empty tree reports empty", !b.empty());
+            assertTrue("Tree malformed", s.equals(b.getRoot().getData()));
+        } catch (Exception e) {
+            fail("Exception thrown " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testEmptyChallengePlus() {
+        try {
+            SPLT b = new SPLT();
+            String s;
+            b.insert("Hello World!");
+            b.insert("Mario World!");
+            b.remove("Hello World!");
+            b.remove("Mario World!");
+            b.insert(s = "It's a whole new world!");
+            assertTrue("Non-empty tree reports empty", !b.empty());
+            assertTrue("Tree malformed", s.equals(b.getRoot().getData()));
+        } catch (Exception e) {
+            fail("Exception thrown " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testContainsEasy() {
+        try {
+            SPLT b = new SPLT();
+            assertTrue("Empty tree contains something", !b.contains("A String"));
+        } catch (Exception e) {
+            fail("Exception thrown " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testContainsMedium() {
+        try {
+            SPLT b = new SPLT();
+            String s;
+            b.insert(s = "Hello World!");
+            assertTrue("Non-empty tree doesn't contain its root", b.contains(s));
+            assertTrue("Tree malformed", s.equals(b.getRoot().getData()));
+        } catch (Exception e) {
+            fail("Exception thrown " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testContainsMediumPlus() {
+        try {
+            SPLT b = new SPLT();
+            b.insert("Hello World!");
+            assertTrue("Non-empty tree contains something other than its root", !b.contains("A String"));
+        } catch (Exception e) {
+            fail("Exception thrown " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testContainsHard() {
+        try {
+            SPLT b = new SPLT();
+            String s;
+            b.insert("Hello World!");
+            b.insert("A whole new World!");
+            b.insert("000000");
+            b.insert(s = "Elmo's World!");
+            b.insert("Mario World!");
+            b.insert("Luigi's World!");
+            b.insert("Yoshi's World!");
+            assertTrue("Non-empty tree doesn't contain sub-element", b.contains(s));
+            assertTrue("Tree malformed", s.equals(b.getRoot().getData()));
+        } catch (Exception e) {
+            fail("Exception thrown " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testContainsHardPlus() {
+        try {
+            SPLT b = new SPLT();
+            b.insert("Hello World!");
+            b.insert("A whole new World!");
+            b.insert("000000");
+            b.insert("Elmo's World!");
+            b.insert("Mario World!");
+            b.insert("Luigi's World!");
+            b.insert("Yoshi's World!");
+            assertTrue("Non-empty tree contain non-element", !b.contains("H3110 W0R1D"));
+        } catch (Exception e) {
+            fail("Exception thrown " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testSizeEasy() {
+        try {
+            SPLT b = new SPLT();
+            assertTrue("New tree not empty", b.size() == 0);
+        } catch (Exception e) {
+            fail("Exception thrown " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testSizeMedium() {
+        try {
+            SPLT b = new SPLT();
+            String s;
+            b.insert(s = "Mario World!");
+            assertTrue("Tree with only root does not have one element", b.size() == 1);
+            assertTrue("Tree malformed", s.equals(b.getRoot().getData()));
+        } catch (Exception e) {
+            fail("Exception thrown " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testSizeHard() {
+        try {
+            SPLT b = new SPLT();
+            String s = null;
+            for (int i = 0; i < MAX; i++) {
+                b.insert(s = MyRandom.nextString());
+            }
+            assertTrue("Tree with " + MAX + " elements does not have " + MAX + " elements", b.size() == MAX);
+            assertTrue("Tree malformed", s.equals(b.getRoot().getData()));
+        } catch (Exception e) {
+            fail("Exception thrown " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testSizeChallenge() {
+        try {
+            SPLT b = new SPLT();
+            String[] s = new String[MAX];
+            for (int i = 0; i < MAX; i++) {
+                b.insert(s[i] = MyRandom.nextString());
+            }
+            for (int i = 0; i < MAX / 2; i++) {
+                b.remove(s[i]);
+            }
+            assertTrue("Tree with " + MAX / 2 + " elements does not have " + MAX / 2 + " elements",
+                    b.size() == MAX / 2);
+        } catch (Exception e) {
+            fail("Exception thrown " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testSizeChallengePlus() {
+        try {
+            SPLT b = new SPLT();
+            String[] s = new String[MAX];
+            for (int i = 0; i < MAX; i++) {
+                b.insert(s[i] = MyRandom.nextString());
+            }
+            for (String str : s)
+                b.remove(str);
+            assertTrue("Empty tree has elements", b.size() == 0);
+        } catch (Exception e) {
+            fail("Exception thrown " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testHeightEasy() {
+        try {
+            SPLT b = new SPLT();
+            assertTrue("New tree has wrong height", b.height() == -1);
+        } catch (Exception e) {
+            fail("Exception thrown " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testHeightMedium() {
+        try {
+            SPLT b = new SPLT();
+            String s;
+            b.insert(s = "Mario World!");
+            assertTrue("Root-only tree has wrong height", b.height() == 0);
+            assertTrue("Tree malformed", s.equals(b.getRoot().getData()));
+        } catch (Exception e) {
+            fail("Exception thrown " + e.getMessage());
+        }
+    }
 }
