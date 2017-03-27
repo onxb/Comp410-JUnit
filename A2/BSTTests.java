@@ -467,7 +467,7 @@ public class BSTTests {
             b.insert("Mario World!");
             b.insert("Luigi's World!");
             b.insert("Yoshi's World!");
-            assertTrue("Non-empty tree contain non-element", !b.contains("H3110 W0R1D"));
+            assertTrue("Non-empty tree contains non-element", !b.contains("H3110 W0R1D"));
         } catch (Exception e) {
             fail("Exception thrown " + e.getMessage());
         }
