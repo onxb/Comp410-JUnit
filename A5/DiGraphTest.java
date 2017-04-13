@@ -651,7 +651,7 @@ public class DiGraphTest {
         for (int i = 0; i < a.length; i++) {
             if (a[i] == null || b[i] == null)
                 return false;
-            if (!a.equals(b))
+            if (!a[i].equals(b[i]))
                 return false;
         }
         return true;
