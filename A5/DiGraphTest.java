@@ -174,9 +174,10 @@ public class DiGraphTest {
             assertTrue("Adding edge between two nodes failed", d.addEdge(1, s1, s3, 1, "a"));
             assertTrue("Adding edge between two nodes failed", d.addEdge(2, s2, s3, 1, "a"));
             for (int i = 3; i < NUM_NODES; i++) {
-                d.addNode(i, s1 += s1);
+                d.addNode(i, s1 += "a");
                 assertTrue("Adding edge between two nodes failed at " + i, d.addEdge(i, s2, s1, 1, "a"));
-                assertTrue("Adding edge between two nodes failed at " + i * 2, d.addEdge(i * 2, s3, s1, 1, "a"));
+                assertTrue("Adding edge between two nodes failed at " + (i + NUM_NODES),
+                        d.addEdge(i + NUM_NODES, s3, s1, 1, "a"));
                 s2 = s3;
                 s3 = s1;
             }
@@ -288,7 +289,7 @@ public class DiGraphTest {
             d.addNode(0, "first");
             d.addNode(1, "second");
             d.addEdge(0, "first", "second", 1, "a");
-            assertFalse("Deleting edge failed", d.delEdge("first", "second"));
+            assertTrue("Deleting edge failed", d.delEdge("first", "second"));
         } catch (Exception e) {
             fail("Exception thrown: " + e.getMessage());
         }
@@ -317,9 +318,9 @@ public class DiGraphTest {
                 d.addEdge(i, s2, s1, 1, "a");
                 source[i] = s2;
                 dest[i] = s1;
-                d.addEdge(i * 2, s3, s1, 1, "a");
-                source[i * 2] = s3;
-                dest[i * 2] = s1;
+                d.addEdge(i + NUM_NODES, s3, s1, 1, "a");
+                source[i + NUM_NODES] = s3;
+                dest[i + NUM_NODES] = s1;
 
                 s2 = s3;
                 s3 = s1;
@@ -419,7 +420,7 @@ public class DiGraphTest {
             for (int i = 3; i < NUM_NODES; i++) {
                 d.addNode(i, s1 += "a");
                 d.addEdge(i, s2, s1, 1, "a");
-                d.addEdge(i * 2, s3, s1, 1, "a");
+                d.addEdge(i + NUM_NODES, s3, s1, 1, "a");
                 s2 = s3;
                 s3 = s1;
                 edges += 2;
@@ -468,9 +469,9 @@ public class DiGraphTest {
             d.addEdge(i, s2, s1, 1, "a");
             source[i] = s2;
             dest[i] = s1;
-            d.addEdge(i * 2, s3, s1, 1, "a");
-            source[i * 2] = s3;
-            dest[i * 2] = s1;
+            d.addEdge(i + NUM_NODES, s3, s1, 1, "a");
+            source[i + NUM_NODES] = s3;
+            dest[i + NUM_NODES] = s1;
 
             s2 = s3;
             s3 = s1;
@@ -568,6 +569,7 @@ public class DiGraphTest {
         }
     }
 
+    @Test
     public void TopoSortNonUniqueTest() {
         // This graph has two topo sorts
         // a --> b --> c --> d
@@ -627,18 +629,12 @@ public class DiGraphTest {
             d.addNode(2, "c");
             d.addNode(3, "d");
             d.addEdge(2, "c", "d", 1, null);
-            String[][] sorts = new String[][] {
-                {"a", "b", "c", "d"},
-                {"a", "c", "b", "d"},
-                {"a", "c", "d", "b"},
-                {"c", "a", "b", "d"},
-                {"c", "a", "d", "b"},
-                {"c", "d", "a", "b"},
-            };
+            String[][] sorts = new String[][] { { "a", "b", "c", "d" }, { "a", "c", "b", "d" }, { "a", "c", "d", "b" },
+                    { "c", "a", "b", "d" }, { "c", "a", "d", "b" }, { "c", "d", "a", "b" }, };
             String[] topo = d.topoSort();
             boolean result = false;
             for (String[] sort : sorts) {
-                result |= sortEquals(topo,sort);
+                result |= sortEquals(topo, sort);
             }
             assertTrue("Disconnected Graph produced invalid topo sort", result);
         } catch (Exception e) {
