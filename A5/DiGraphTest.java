@@ -275,7 +275,7 @@ public class DiGraphTest {
             DiGraph d = new DiGraph();
             d.addNode(0, "a");
             d.addEdge(0, "a", "a", 1, null);
-            assertTrue("Adding second edge from node to self succeeded", d.addEdge(1, "a", "a", 1, null));
+            assertFalse("Adding second edge from node to self succeeded", d.addEdge(1, "a", "a", 1, null));
         } catch (Exception e) {
             fail("Exception thrown: " + e.getMessage());
         }
