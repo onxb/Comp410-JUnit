@@ -416,6 +416,9 @@ public class DiGraphTest {
             d.addNode(0, s1 = "a");
             d.addNode(1, s2 = "b");
             d.addNode(2, s3 = "c");
+            d.addEdge(0, s1, s2, 1, "a");
+            d.addEdge(1, s1, s3, 1, "a");
+            d.addEdge(2, s2, s3, 1, "a");
             int edges = 3;
             for (int i = 3; i < NUM_NODES; i++) {
                 d.addNode(i, s1 += "a");
