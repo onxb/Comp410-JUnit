@@ -241,3 +241,145 @@ public void algorithmStressTest() {
     // Not quite sure how to test. Mainly to test algorithm is efficient
     assertEquals(d.numOfNodes, results.length);
 }
+
+@Test
+public void integration1() {
+    DiGraph graph = new DiGraph();
+    graph.addNode(1, "a");
+    graph.addNode(2, "b");
+    graph.addNode(3, "c");
+    graph.addNode(4, "d");
+    graph.addNode(5, "e");
+    graph.addNode(6, "f");
+    graph.addNode(7, "g");
+
+    graph.addEdge(0, "a", "b", 2, null);
+    graph.addEdge(1, "a", "d", 1, null);
+    graph.addEdge(2, "b", "d", 3, null);
+    graph.addEdge(3, "b", "e", 1, null);
+    graph.addEdge(4, "d", "e", 3, null);
+    graph.addEdge(5, "d", "g", 4, null);
+    graph.addEdge(6, "d", "f", 8, null);
+    graph.addEdge(7, "e", "g", 6, null);
+    graph.addEdge(8, "g", "f", 1, null);
+    graph.addEdge(9, "c", "f", 5, null);
+    graph.addEdge(10, "c", "a", 4, null);
+    graph.addEdge(11, "d", "c", 2, null);
+
+    graph.delEdge("d", "f");
+    graph.delNode("b");
+
+    ShortestPathInfo[] results = graph.shortestPath("a");
+
+    assertEquals(0, results[0].getTotalWeight());
+    assertEquals("a", results[0].getDest());
+
+    assertEquals(1, results[1].getTotalWeight());
+    assertEquals("d", results[1].getDest());
+
+    assertEquals(3, results[2].getTotalWeight());
+    assertEquals("c", results[2].getDest());
+
+    assertEquals(4, results[3].getTotalWeight());
+    assertEquals("e", results[3].getDest());
+
+    assertEquals(5, results[4].getTotalWeight());
+    assertEquals("g", results[4].getDest());
+
+    assertEquals(6, results[5].getTotalWeight());
+    assertEquals("f", results[5].getDest());
+}
+
+@Test
+public void integration2() {
+    DiGraph graph = new DiGraph();
+    graph.addNode(1, "a");
+    graph.addNode(2, "b");
+    graph.addNode(3, "c");
+    graph.addNode(4, "d");
+    graph.addNode(5, "e");
+    graph.addNode(6, "f");
+    graph.addNode(7, "g");
+
+    graph.addEdge(0, "a", "b", 2, null);
+    graph.addEdge(1, "a", "d", 1, null);
+    graph.addEdge(2, "b", "d", 3, null);
+    graph.addEdge(3, "b", "e", 1, null);
+    graph.addEdge(4, "d", "e", 3, null);
+    graph.addEdge(5, "d", "g", 4, null);
+    graph.addEdge(6, "d", "f", 8, null);
+    graph.addEdge(7, "e", "g", 6, null);
+    graph.addEdge(8, "g", "f", 1, null);
+    graph.addEdge(9, "c", "f", 5, null);
+    graph.addEdge(10, "c", "a", 4, null);
+    graph.addEdge(11, "d", "c", 2, null);
+
+    graph.delNode("d");
+
+    ShortestPathInfo[] results = graph.shortestPath("a");
+
+    assertEquals(0, results[0].getTotalWeight());
+    assertEquals("a", results[0].getDest());
+
+    assertEquals(2, results[1].getTotalWeight());
+    assertEquals("b", results[1].getDest());
+
+    assertEquals(3, results[2].getTotalWeight());
+    assertEquals("e", results[2].getDest());
+
+    assertEquals(9, results[3].getTotalWeight());
+    assertEquals("g", results[3].getDest());
+
+    assertEquals(10, results[4].getTotalWeight());
+    assertEquals("f", results[4].getDest());
+
+    assertEquals(-1, results[5].getTotalWeight());
+    assertEquals("c", results[5].getDest());
+}
+
+@Test
+public void integration3() {
+    DiGraph graph = new DiGraph();
+    graph.addNode(1, "a");
+    graph.addNode(2, "b");
+    graph.addNode(3, "c");
+    graph.addNode(4, "d");
+    graph.addNode(5, "e");
+    graph.addNode(6, "f");
+    graph.addNode(7, "g");
+
+    graph.addEdge(0, "a", "b", 2, null);
+    graph.addEdge(1, "a", "d", 1, null);
+    graph.addEdge(2, "b", "d", 3, null);
+    graph.addEdge(3, "b", "e", 1, null);
+    graph.addEdge(4, "d", "e", 3, null);
+    graph.addEdge(5, "d", "g", 4, null);
+    graph.addEdge(6, "d", "f", 8, null);
+    graph.addEdge(7, "e", "g", 6, null);
+    graph.addEdge(8, "g", "f", 1, null);
+    graph.addEdge(9, "c", "f", 5, null);
+    graph.addEdge(10, "c", "a", 4, null);
+    graph.addEdge(11, "d", "c", 2, null);
+
+    graph.delNode("g");
+
+    ShortestPathInfo[] results = graph.shortestPath("b");
+
+    assertEquals(0, results[0].getTotalWeight());
+    assertEquals("b", results[0].getDest());
+
+    assertEquals(1, results[1].getTotalWeight());
+    assertEquals("e", results[1].getDest());
+
+    assertEquals(3, results[2].getTotalWeight());
+    assertEquals("d", results[2].getDest());
+
+    assertEquals(5, results[3].getTotalWeight());
+    assertEquals("c", results[3].getDest());
+
+    assertEquals(9, results[4].getTotalWeight());
+    assertEquals("a", results[4].getDest());
+
+    assertEquals(10, results[5].getTotalWeight());
+    assertEquals("f", results[5].getDest());
+}
