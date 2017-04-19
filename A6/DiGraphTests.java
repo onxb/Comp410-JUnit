@@ -90,7 +90,7 @@ public void algorithm7() {
 
     assertEquals(-1, results[3].getTotalWeight());
     assertTrue(results[3].getDest().equals("a") || results[3].getDest().equals("d"));
-    assertTrue(results[2].getDest().equals(results[3].getDest()));
+    assertFalse(results[2].getDest().equals(results[3].getDest()));
 }
 
 @Test
