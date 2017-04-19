@@ -1,9 +1,14 @@
 package A6_Dijkstra;
 
 import static org.junit.Assert.*;
+
+import java.util.HashMap;
+
 import org.junit.Test;
 
 public class DiGraphTests {
+	public static final int NUM_NODES = 1000;
+
     @Test
     public void algorithm1() {
     	DiGraph graph = new DiGraph();
@@ -11,14 +16,13 @@ public class DiGraphTests {
 		graph.addNode(2, "b");
 		
 		graph.addEdge(0, "a", "b", 1, null);
-		
-		ShortestPathInfo[] results = graph.shortestPath("a");
 
-		assertEquals(0, results[0].getTotalWeight());
-		assertEquals("a", results[0].getDest());
+		HashMap<String, Integer> correct = new HashMap<String, Integer>();
 		
-		assertEquals(1, results[1].getTotalWeight());
-		assertEquals("b", results[1].getDest());
+		correct.put("a", 0);
+		correct.put("b", 1);
+		
+		assertTrue(checkShortestPath(correct, graph, "a"));
     }
     
     @Test
@@ -31,16 +35,13 @@ public class DiGraphTests {
 		graph.addEdge(0, "a", "b", 1, null);
 		graph.addEdge(1, "b", "c", 1, null);
 		
-		ShortestPathInfo[] results = graph.shortestPath("a");
-
-		assertEquals(0, results[0].getTotalWeight());
-		assertEquals("a", results[0].getDest());
+		HashMap<String, Integer> correct = new HashMap<String, Integer>();
 		
-		assertEquals(1, results[1].getTotalWeight());
-		assertEquals("b", results[1].getDest());
+		correct.put("a", 0);
+		correct.put("b", 1);
+		correct.put("c", 2);
 		
-		assertEquals(2, results[2].getTotalWeight());
-		assertEquals("c", results[2].getDest());
+		assertTrue(checkShortestPath(correct, graph, "a"));
     }
     
     @Test
@@ -55,19 +56,14 @@ public class DiGraphTests {
 		graph.addEdge(1, "b", "c", 1, null);
 		graph.addEdge(2, "a", "d", 2, null);
 		
-		ShortestPathInfo[] results = graph.shortestPath("a");
-
-		assertEquals(0, results[0].getTotalWeight());
-		assertEquals("a", results[0].getDest());
+		HashMap<String, Integer> correct = new HashMap<String, Integer>();
 		
-		assertEquals(1, results[1].getTotalWeight());
-		assertEquals("b", results[1].getDest());
+		correct.put("a", 0);
+		correct.put("b", 1);
+		correct.put("c", 2);
+		correct.put("d", 2);
 		
-		assertEquals(2, results[2].getTotalWeight());
-		assertEquals("c", results[2].getDest());
-		
-		assertEquals(2, results[3].getTotalWeight());
-		assertEquals("d", results[3].getDest());
+		assertTrue(checkShortestPath(correct, graph, "a"));
     }
     
     @Test
@@ -81,22 +77,15 @@ public class DiGraphTests {
 		graph.addEdge(0, "a", "b", 1, null);
 		graph.addEdge(1, "b", "c", 1, null);
 		graph.addEdge(2, "a", "d", 2, null);
-
-		ShortestPathInfo[] results = graph.shortestPath("b");
-
-		assertEquals(0, results[0].getTotalWeight());
-		assertEquals("b", results[0].getDest());
 		
-		assertEquals(1, results[1].getTotalWeight());
-		assertEquals("c", results[1].getDest());
+		HashMap<String, Integer> correct = new HashMap<String, Integer>();
 		
-		// Order for weights of -1 doesn't matter
-		assertEquals(-1, results[2].getTotalWeight());
-		assertTrue(results[2].getDest().equals("a") || results[2].getDest().equals("d"));
+		correct.put("a", -1);
+		correct.put("b", 0);
+		correct.put("c", 1);
+		correct.put("d", -1);
 		
-		assertEquals(-1, results[3].getTotalWeight());
-		assertTrue(results[3].getDest().equals("a") || results[3].getDest().equals("d"));
-		assertFalse(results[2].getDest().equals(results[3].getDest()));
+		assertTrue(checkShortestPath(correct, graph, "b"));
     }
 
     @Test
@@ -123,28 +112,17 @@ public class DiGraphTests {
 		graph.addEdge(10, "c", "a", 4, null);
 		graph.addEdge(11, "d", "c", 2, null);
 		
-		ShortestPathInfo[] results = graph.shortestPath("a");
-
-		assertEquals(0, results[0].getTotalWeight());
-		assertEquals("a", results[0].getDest());
+		HashMap<String, Integer> correct = new HashMap<String, Integer>();
 		
-		assertEquals(1, results[1].getTotalWeight());
-		assertEquals("d", results[1].getDest());
+		correct.put("a", 0);
+		correct.put("d", 1);
+		correct.put("b", 2);
+		correct.put("c", 3);
+		correct.put("e", 3);
+		correct.put("g", 5);
+		correct.put("f", 6);
 		
-		assertEquals(2, results[2].getTotalWeight());
-		assertEquals("b", results[2].getDest());
-		
-		assertEquals(3, results[3].getTotalWeight());
-		assertEquals("c", results[3].getDest());
-		
-		assertEquals(3, results[4].getTotalWeight());
-		assertEquals("e", results[4].getDest());
-		
-		assertEquals(5, results[5].getTotalWeight());
-		assertEquals("g", results[5].getDest());
-		
-		assertEquals(6, results[6].getTotalWeight());
-		assertEquals("f", results[6].getDest());
+		assertTrue(checkShortestPath(correct, graph, "a"));
     }
     
     @Test
@@ -161,32 +139,17 @@ public class DiGraphTests {
 		graph.addEdge(0, "a", "b", 2, null);
 		graph.addEdge(1, "a", "d", 1, null);
 		
-		ShortestPathInfo[] results = graph.shortestPath("a");
-
-		assertEquals(0, results[0].getTotalWeight());
-		assertEquals("a", results[0].getDest());
-
-		assertEquals(1, results[1].getTotalWeight());
-		assertEquals("d", results[1].getDest());
+		HashMap<String, Integer> correct = new HashMap<String, Integer>();
 		
-		assertEquals(2, results[2].getTotalWeight());
-		assertEquals("b", results[2].getDest());
+		correct.put("a", 0);
+		correct.put("d", 1);
+		correct.put("b", 2);
+		correct.put("c", -1);
+		correct.put("e", -1);
+		correct.put("f", -1);
+		correct.put("g", -1);
 		
-		// Can comment these out if failing due to different order of destination nodes. algorithm7 
-		// should check if you are handling non-existent edges correctly
-		assertEquals(-1, results[3].getTotalWeight());
-		assertEquals("c", results[3].getDest());
-		
-		assertEquals(-1, results[4].getTotalWeight());
-		assertEquals("e", results[4].getDest());
-		
-		assertEquals(-1, results[5].getTotalWeight());
-		assertEquals("f", results[5].getDest());
-		
-		assertEquals(-1, results[6].getTotalWeight());
-		assertEquals("g", results[6].getDest());
-
-		assertEquals(graph.numOfNodes, results.length);
+		assertTrue(checkShortestPath(correct, graph, "a"));
     }
     
     @Test
@@ -203,32 +166,17 @@ public class DiGraphTests {
 		graph.addEdge(0, "a", "b", 2, null);
 		graph.addEdge(1, "a", "d", 1, null);
 		
-		ShortestPathInfo[] results = graph.shortestPath("c");
-
-		assertEquals(0, results[0].getTotalWeight());
-		assertEquals("c", results[0].getDest());
-
-		// Can comment these out if failing due to different order of destination nodes. algorithm7 
-		// should check if you are handling non-existent edges correctly
-		assertEquals(-1, results[1].getTotalWeight());
-		assertEquals("a", results[1].getDest());
-
-		assertEquals(-1, results[2].getTotalWeight());
-		assertEquals("b", results[2].getDest());
+		HashMap<String, Integer> correct = new HashMap<String, Integer>();
 		
-		assertEquals(-1, results[3].getTotalWeight());
-		assertEquals("d", results[3].getDest());
+		correct.put("a", -1);
+		correct.put("b", -1);
+		correct.put("c", 0);
+		correct.put("d", -1);
+		correct.put("e", -1);
+		correct.put("f", -1);
+		correct.put("g", -1);
 		
-		assertEquals(-1, results[4].getTotalWeight());
-		assertEquals("e", results[4].getDest());
-		
-		assertEquals(-1, results[5].getTotalWeight());
-		assertEquals("f", results[5].getDest());
-		
-		assertEquals(-1, results[6].getTotalWeight());
-		assertEquals("g", results[6].getDest());
-
-		assertEquals(graph.numOfNodes, results.length);
+		assertTrue(checkShortestPath(correct, graph, "c"));
     }
     
     @Test
@@ -257,26 +205,17 @@ public class DiGraphTests {
 		
 		graph.delEdge("d", "f");
 		graph.delNode("b");
-
-		ShortestPathInfo[] results = graph.shortestPath("a");
-
-		assertEquals(0, results[0].getTotalWeight());
-		assertEquals("a", results[0].getDest());
 		
-		assertEquals(1, results[1].getTotalWeight());
-		assertEquals("d", results[1].getDest());
+		HashMap<String, Integer> correct = new HashMap<String, Integer>();
 		
-		assertEquals(3, results[2].getTotalWeight());
-		assertEquals("c", results[2].getDest());
+		correct.put("a", 0);
+		correct.put("d", 1);
+		correct.put("c", 3);
+		correct.put("e", 4);
+		correct.put("g", 5);
+		correct.put("f", 6);
 		
-		assertEquals(4, results[3].getTotalWeight());
-		assertEquals("e", results[3].getDest());
-		
-		assertEquals(5, results[4].getTotalWeight());
-		assertEquals("g", results[4].getDest());
-		
-		assertEquals(6, results[5].getTotalWeight());
-		assertEquals("f", results[5].getDest());
+		assertTrue(checkShortestPath(correct, graph, "a"));
     }
     
     @Test
@@ -304,26 +243,17 @@ public class DiGraphTests {
 		graph.addEdge(11, "d", "c", 2, null);
 
 		graph.delNode("d");
-
-		ShortestPathInfo[] results = graph.shortestPath("a");
-
-		assertEquals(0, results[0].getTotalWeight());
-		assertEquals("a", results[0].getDest());
 		
-		assertEquals(2, results[1].getTotalWeight());
-		assertEquals("b", results[1].getDest());
+		HashMap<String, Integer> correct = new HashMap<String, Integer>();
 		
-		assertEquals(3, results[2].getTotalWeight());
-		assertEquals("e", results[2].getDest());
+		correct.put("a", 0);
+		correct.put("b", 2);
+		correct.put("e", 3);
+		correct.put("g", 9);
+		correct.put("f", 10);
+		correct.put("c", -1);
 		
-		assertEquals(9, results[3].getTotalWeight());
-		assertEquals("g", results[3].getDest());
-		
-		assertEquals(10, results[4].getTotalWeight());
-		assertEquals("f", results[4].getDest());
-		
-		assertEquals(-1, results[5].getTotalWeight());
-		assertEquals("c", results[5].getDest());
+		assertTrue(checkShortestPath(correct, graph, "a"));
     }
     
     @Test
@@ -352,31 +282,22 @@ public class DiGraphTests {
 
 		graph.delNode("g");
 
-		ShortestPathInfo[] results = graph.shortestPath("b");
-
-		assertEquals(0, results[0].getTotalWeight());
-		assertEquals("b", results[0].getDest());
+		HashMap<String, Integer> correct = new HashMap<String, Integer>();
 		
-		assertEquals(1, results[1].getTotalWeight());
-		assertEquals("e", results[1].getDest());
+		correct.put("b", 0);
+		correct.put("e", 1);
+		correct.put("d", 3);
+		correct.put("c", 5);
+		correct.put("a", 9);
+		correct.put("f", 10);
 		
-		assertEquals(3, results[2].getTotalWeight());
-		assertEquals("d", results[2].getDest());
-		
-		assertEquals(5, results[3].getTotalWeight());
-		assertEquals("c", results[3].getDest());
-		
-		assertEquals(9, results[4].getTotalWeight());
-		assertEquals("a", results[4].getDest());
-		
-		assertEquals(10, results[5].getTotalWeight());
-		assertEquals("f", results[5].getDest());
+		assertTrue(checkShortestPath(correct, graph, "b"));
     }
 
     @Test
     public void algorithmStressTest() {
     	DiGraph d = new DiGraph();
-		for (int i = 0; i < 100; i++) {
+		for (int i = 0; i < NUM_NODES; i++) {
 			d.addNode(i, Integer.toString(i));
 			if (i > 2) {
 				d.addEdge((int) (i * Math.random() * Math.random() * 100000), Integer.toString(i), Integer.toString(i-1), 0, null);
@@ -386,7 +307,16 @@ public class DiGraphTests {
 		
 		ShortestPathInfo[] results = d.shortestPath("3");
 
-		// Not quite sure how to test. Mainly to test algorithm is efficient
+		// Verify that the code doesn't explode with large numbers
 		assertEquals(d.numOfNodes, results.length);
+    }
+    
+    public boolean checkShortestPath(HashMap<String,Integer> correct, DiGraph D, String label){
+    	ShortestPathInfo [] paths = D.shortestPath(label);
+        for (ShortestPathInfo obj : paths) {
+            long ans=correct.get(obj.getDest());
+            if(ans!=obj.getTotalWeight())return false;
+        }
+        return true;
     }
 }
