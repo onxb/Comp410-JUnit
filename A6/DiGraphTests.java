@@ -17,7 +17,7 @@ public class DiGraphTests {
 
         graph.addEdge(0, "a", "b", 1, null);
 
-        HashMap<String, Integer> correct = new HashMap<String, Integer>();
+        HashMap<String, Integer> correct = new HashMap<>();
 
         correct.put("a", 0);
         correct.put("b", 1);
@@ -35,7 +35,7 @@ public class DiGraphTests {
         graph.addEdge(0, "a", "b", 1, null);
         graph.addEdge(1, "b", "c", 1, null);
 
-        HashMap<String, Integer> correct = new HashMap<String, Integer>();
+        HashMap<String, Integer> correct = new HashMap<>();
 
         correct.put("a", 0);
         correct.put("b", 1);
@@ -56,7 +56,7 @@ public class DiGraphTests {
         graph.addEdge(1, "b", "c", 1, null);
         graph.addEdge(2, "a", "d", 2, null);
 
-        HashMap<String, Integer> correct = new HashMap<String, Integer>();
+        HashMap<String, Integer> correct = new HashMap<>();
 
         correct.put("a", 0);
         correct.put("b", 1);
@@ -78,7 +78,7 @@ public class DiGraphTests {
         graph.addEdge(1, "b", "c", 1, null);
         graph.addEdge(2, "a", "d", 2, null);
 
-        HashMap<String, Integer> correct = new HashMap<String, Integer>();
+        HashMap<String, Integer> correct = new HashMap<>();
 
         correct.put("a", -1);
         correct.put("b", 0);
@@ -112,7 +112,7 @@ public class DiGraphTests {
         graph.addEdge(10, "c", "a", 4, null);
         graph.addEdge(11, "d", "c", 2, null);
 
-        HashMap<String, Integer> correct = new HashMap<String, Integer>();
+        HashMap<String, Integer> correct = new HashMap<>();
 
         correct.put("a", 0);
         correct.put("d", 1);
@@ -139,7 +139,7 @@ public class DiGraphTests {
         graph.addEdge(0, "a", "b", 2, null);
         graph.addEdge(1, "a", "d", 1, null);
 
-        HashMap<String, Integer> correct = new HashMap<String, Integer>();
+        HashMap<String, Integer> correct = new HashMap<>();
 
         correct.put("a", 0);
         correct.put("d", 1);
@@ -166,7 +166,7 @@ public class DiGraphTests {
         graph.addEdge(0, "a", "b", 2, null);
         graph.addEdge(1, "a", "d", 1, null);
 
-        HashMap<String, Integer> correct = new HashMap<String, Integer>();
+        HashMap<String, Integer> correct = new HashMap<>();
 
         correct.put("a", -1);
         correct.put("b", -1);
@@ -206,7 +206,7 @@ public class DiGraphTests {
         graph.delEdge("d", "f");
         graph.delNode("b");
 
-        HashMap<String, Integer> correct = new HashMap<String, Integer>();
+        HashMap<String, Integer> correct = new HashMap<>();
 
         correct.put("a", 0);
         correct.put("d", 1);
@@ -244,7 +244,7 @@ public class DiGraphTests {
 
         graph.delNode("d");
 
-        HashMap<String, Integer> correct = new HashMap<String, Integer>();
+        HashMap<String, Integer> correct = new HashMap<>();
 
         correct.put("a", 0);
         correct.put("b", 2);
@@ -282,7 +282,7 @@ public class DiGraphTests {
 
         graph.delNode("g");
 
-        HashMap<String, Integer> correct = new HashMap<String, Integer>();
+        HashMap<String, Integer> correct = new HashMap<>();
 
         correct.put("b", 0);
         correct.put("e", 1);
