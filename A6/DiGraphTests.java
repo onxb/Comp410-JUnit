@@ -313,7 +313,7 @@ public class DiGraphTests {
         assertEquals(d.numNodes(), results.length);
     }
 
-    public boolean checkShortestPath(HashMap<String, Integer> correct, DiGraph D, String label) {
+    private boolean checkShortestPath(HashMap<String, Integer> correct, DiGraph D, String label) {
         ShortestPathInfo[] paths = D.shortestPath(label);
         if (D.numNodes() != paths.length || correct.size() != paths.length)
             return false;
