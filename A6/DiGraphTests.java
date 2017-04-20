@@ -308,7 +308,7 @@ public class DiGraphTests {
 		ShortestPathInfo[] results = d.shortestPath("3");
 
 		// Verify that the code doesn't explode with large numbers
-		assertEquals(d.numOfNodes, results.length);
+		assertEquals(d.numNodes(), results.length);
     }
     
     public boolean checkShortestPath(HashMap<String,Integer> correct, DiGraph D, String label){
