@@ -10,7 +10,7 @@ public class DiGraphTests {
     public static final int NUM_NODES = 1000;
 
     @Test
-    public void algorithm1() {
+    public void ShortestPathSimple1() {
         DiGraph graph = new DiGraph();
         graph.addNode(1, "a");
         graph.addNode(2, "b");
@@ -26,7 +26,7 @@ public class DiGraphTests {
     }
 
     @Test
-    public void algorithm2() {
+    public void ShortestPathSimple2() {
         DiGraph graph = new DiGraph();
         graph.addNode(1, "a");
         graph.addNode(2, "b");
@@ -45,7 +45,7 @@ public class DiGraphTests {
     }
 
     @Test
-    public void algorithm3() {
+    public void ShortestPathSimple3() {
         DiGraph graph = new DiGraph();
         graph.addNode(1, "a");
         graph.addNode(2, "b");
@@ -67,7 +67,7 @@ public class DiGraphTests {
     }
 
     @Test
-    public void algorithm7() {
+    public void ShortestPathSimple3b() {
         DiGraph graph = new DiGraph();
         graph.addNode(1, "a");
         graph.addNode(2, "b");
@@ -89,7 +89,7 @@ public class DiGraphTests {
     }
 
     @Test
-    public void algorithm4LectureExample() {
+    public void ShortestPathComplex() {
         DiGraph graph = new DiGraph();
         graph.addNode(1, "a");
         graph.addNode(2, "b");
@@ -126,7 +126,7 @@ public class DiGraphTests {
     }
 
     @Test
-    public void algorithm5() {
+    public void ShortestPathDisconnected1() {
         DiGraph graph = new DiGraph();
         graph.addNode(1, "a");
         graph.addNode(2, "b");
@@ -153,7 +153,7 @@ public class DiGraphTests {
     }
 
     @Test
-    public void algorithm6() {
+    public void ShortestPathDisconnected1c() {
         DiGraph graph = new DiGraph();
         graph.addNode(1, "a");
         graph.addNode(2, "b");
@@ -180,7 +180,7 @@ public class DiGraphTests {
     }
 
     @Test
-    public void integration1() {
+    public void ShortestPathIntegrationComplex1() {
         DiGraph graph = new DiGraph();
         graph.addNode(1, "a");
         graph.addNode(2, "b");
@@ -219,7 +219,7 @@ public class DiGraphTests {
     }
 
     @Test
-    public void integration2() {
+    public void ShortestPathIntegrationComplex2() {
         DiGraph graph = new DiGraph();
         graph.addNode(1, "a");
         graph.addNode(2, "b");
@@ -257,7 +257,7 @@ public class DiGraphTests {
     }
 
     @Test
-    public void integration3() {
+    public void ShortestPathIntegrationComplex3() {
         DiGraph graph = new DiGraph();
         graph.addNode(1, "a");
         graph.addNode(2, "b");
@@ -295,7 +295,7 @@ public class DiGraphTests {
     }
 
     @Test
-    public void algorithmStressTest() {
+    public void ShortestPathStressTest() {
         DiGraph d = new DiGraph();
         for (int i = 0; i < NUM_NODES; i++) {
             d.addNode(i, Integer.toString(i));
