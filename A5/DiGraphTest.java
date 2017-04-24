@@ -656,4 +656,36 @@ public class DiGraphTest {
         }
         return true;
     }
+
+    @Test
+    public void delNodeCase3() {
+        DiGraph d = new DiGraph();
+        d.addNode(1, "f");
+        d.addNode(2, "x");
+        assertEquals("Wrong number of nodes", 2, d.numNodes());
+        d.addEdge(0, "f", "x", 0, null);
+        assertEquals("Wrong number of edges", 1, d.numEdges());
+        d.delNode("x");
+        assertEquals("Wrong number of nodes", 1, d.numNodes());
+        assertEquals("Wrong number of edges", 0, d.numEdges());
+        assertTrue("Unable to readd node", d.addNode(2, "x"));
+        assertTrue("Unable to readd edge", d.addEdge(0, "f", "x", 0, null));
+    }
+
+    @Test
+    public void topoSortCase0() {
+        DiGraph d = new DiGraph();
+        d.addNode(0, "a");
+        d.addNode(1, "b");
+        d.addNode(2, "c");
+        d.addNode(3, "d");
+        d.addEdge(0, "a", "b", 0, null);
+        d.addEdge(1, "b", "c", 0, null);
+        d.addEdge(2, "c", "d", 0, null);
+        d.delNode("a");
+        String[] sort = new String[] { "b", "c", "d" };
+        String[] topo = d.topoSort();
+        assertTrue("Incorrect topo sort", sortEquals(topo, sort));
+    }
+
 }
