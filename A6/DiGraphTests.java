@@ -6,9 +6,11 @@ import java.util.HashMap;
 
 import org.junit.Test;
 
-public class DiGraphTests {
+public class DiGraphsTests {
     public static final int NUM_NODES = 1000;
 
+   
+   
     @Test
     public void ShortestPathSimple1() {
         DiGraph graph = new DiGraph();
@@ -312,7 +314,50 @@ public class DiGraphTests {
         // Verify that the code doesn't explode with large numbers
         assertEquals(d.numNodes(), results.length);
     }
+    @Test
+    public void textBookExamplePage374(){
+    	DiGraph graph = new DiGraph();
+    	
+    	graph.addNode(1, "v1");
+    	graph.addNode(2, "v2");
+    	graph.addNode(3, "v3");
+    	graph.addNode(4, "v4");
+    	graph.addNode(5, "v5");
+    	graph.addNode(6, "v6");
+    	graph.addNode(7, "v7");
+    	
+    	graph.addEdge(0, "v1", "v2", 2, null);
+    	graph.addEdge(1, "v1", "v4", 1, null);
+    	
+    	graph.addEdge(2, "v2", "v4", 3, null);
+    	graph.addEdge(3, "v2", "v5", 10, null);
+    	
+    	graph.addEdge(4, "v3", "v1", 4, null);
+    	graph.addEdge(5, "v3", "v6", 5, null);
+    	
+    	graph.addEdge(6, "v4", "v3", 2, null);
+    	graph.addEdge(7, "v4", "v5", 2, null);
+    	graph.addEdge(8, "v4", "v7", 4, null);
+    	graph.addEdge(9, "v4", "v6", 8, null);
+    	
+    	graph.addEdge(10, "v5", "v7", 6, null);
+    	
+    	graph.addEdge(11, "v7", "v6", 1, null);
+    	
+    	HashMap<String, Integer> correct = new HashMap<>();
 
+        correct.put("v1", 0);
+        correct.put("v2", 2);
+        correct.put("v3", 3);
+        correct.put("v4", 1);
+        correct.put("v5", 3);
+        correct.put("v6", 6);
+        correct.put("v7", 5);
+      
+        
+        assertTrue(checkShortestPath(correct, graph, "v1"));
+    	
+    }
     private boolean checkShortestPath(HashMap<String, Integer> correct, DiGraph D, String label) {
         ShortestPathInfo[] paths = D.shortestPath(label);
         if (D.numNodes() != paths.length || correct.size() != paths.length)
