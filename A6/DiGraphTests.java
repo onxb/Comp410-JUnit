@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 import org.junit.Test;
 
-public class DiGraphsTests {
+public class DiGraphTests {
     public static final int NUM_NODES = 1000;
 
    
